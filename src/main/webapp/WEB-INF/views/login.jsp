@@ -38,16 +38,16 @@
     <div class="container">
       <div class="centered">
         <div class="col-md-12 m-4">
-          <form id="c_form-h" class="">
+           <form method = post  action="loginAction.do">
             <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">ID</label>
               <div class="col-10">
-                <input type="name" class="form-control" id="inputmailh" placeholder="Input your ID"> </div>
+                <input type="name" class="form-control" id="inputmailh" name="userID" placeholder="Input your ID"> </div>
             </div>
             <div class="form-group row"> <label for="inputpasswordh" class="col-2 col-form-label">Password</label>
               <div class="col-10">
-                <input type="password" class="form-control" id="inputpasswordh" placeholder="Input your Password"> </div>
+                <input type="password" class="form-control" id="inputpasswordh" name="userPassword" placeholder="Input your Password"> </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="submit" class="btn btn-primary"></button>
           </form>
         </div>
       </div>

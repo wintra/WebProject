@@ -33,4 +33,19 @@ public class SampleController {
 	public String join(Locale locale, Model model) {
 		return "join";
 	}
+	
+	@RequestMapping(value = "joinAction.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String joinAction(Locale locale, Model model) {
+		return "joinAction";
+	}
+	
+	@RequestMapping(value = "loginAction.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String loginAction(Locale locale, Model model) {
+		return "loginAction";
+	}
+	
+	@RequestMapping(value = "logoutAction.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String logoutAction(Locale locale, Model model) {
+		return "logoutAction";
+	}
 }

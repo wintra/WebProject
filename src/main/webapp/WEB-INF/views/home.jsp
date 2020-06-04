@@ -1,8 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-
+<%@ page import ="java.io.PrintWriter" %>  
 <!DOCTYPE html>
 <html>
+  <style>
+    .box1 {
+      height: 40;
+      text-align: center;
+      position: relative
+    }
 
+    .box2 {
+      height: 40;
+      position: absolute;
+    }
+  </style>
+ 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,25 +23,45 @@
   <style> .centered { width: 1000px; position: absolute; left: 50%; margin-left: -200px; } </style>
 </head>
 
-<body >
-  <div class="">
-    <div class="container">
-      <div class="row mt-2">
-        <div class="" style=""><i class="fa fa-4x fa-camera-retro"></i></div>
-        <div class="col-md-7">
-          <h1 class="m-1" style=""><a href="home.do">Main</a></h1>
-        </div>
-        <div class="col-md-1   offset-md-3" style="">
-          <ul class="nav" style="">
-            <li class="nav-item dropdown" style="">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">접속하기</a>
-              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-                <a class="dropdown-item" href="login.do">로그인</a>
-                <a class="dropdown-item" href="join.do">회원가입</a>
-              </div>
-            </li>
-          </ul>
-        </div>
+<body>
+<%
+		String userID = null;
+		if(session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");
+		}
+%>
+  <div class="container">
+    <div class="row mt-2">
+      <div class="" style=""><i class="fa fa-4x fa-camera-retro"></i></div>
+      <div class="col-md-10">
+        <h1 class="m-1" style=""><a href="home.do">Main</a></h1>
+      </div>
+      <div class="col-md-1" style="">
+        <ul class="nav" style="">
+        <% 
+			if (userID == null ) {
+		%>
+          <div class="box1">
+          <li class="nav-item dropdown" style="" >
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">접속하기</a>
+            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
+              <a class="dropdown-item" href="login.do">로그인</a>
+              <a class="dropdown-item" href="join.do">회원가입</a>
+            </div>
+          </li>
+          </div>
+          <% }else{ %>
+          <div class="box2">
+          <li class="nav-item dropdown" style="">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">마이페이지</a>
+            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
+              <a class="dropdown-item" href="mypageAction.do">내정보</a>
+              <a class="dropdown-item" href="logoutAction.do">로그아웃</a>
+            </div>
+          </li>
+          </div>
+          <% } %>
+        </ul>
       </div>
     </div>
   </div>
