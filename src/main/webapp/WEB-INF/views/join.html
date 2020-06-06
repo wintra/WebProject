@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 
@@ -8,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
-  <style> .centered { width: 1000px; position: absolute; left: 50%; margin-left: -200px; } </style>
 </head>
 
-<body >
+<body>
   <div class="">
     <div class="container">
       <div class="row mt-2">
@@ -22,10 +19,10 @@
         <div class="col-md-1   offset-md-3" style="">
           <ul class="nav" style="">
             <li class="nav-item dropdown" style="">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">�����ϱ�</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">접속하기</a>
               <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-                <a class="dropdown-item" href="login.do">�α���</a>
-                <a class="dropdown-item" href="join.do">ȸ������</a>
+                <a class="dropdown-item" href="login.do">로그인</a>
+                <a class="dropdown-item" href="join.do">회원가입</a>
               </div>
             </li>
           </ul>
@@ -40,31 +37,31 @@
         <div class="col-md-5" style="">
           <div class="jumbotron pb-3" style="padding-top: 20px;">
             <form method="post" action="joinAction.jsp">
-              <h3 style="text-align:center">ȸ������</h3>
+              <h3 style="text-align:center">회원가입</h3>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="���̵�" name="userID" mexlength="20">
+                <input type="text" class="form-control" placeholder="아이디" name="userID" mexlength="20">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="��й�ȣ" name="userPassword" mexlength="20">
+                <input type="password" class="form-control" placeholder="비밀번호" name="userPassword" mexlength="20">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="�̸�" name="userName" mexlength="20">
+                <input type="text" class="form-control" placeholder="이름" name="userName" mexlength="20">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="�̸���" name="userEmail" mexlength="20">
+                <input type="text" class="form-control" placeholder="이메일" name="userEmail" mexlength="20">
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" placeholder=" - �� ������ ��ȣ�� �Է����ּ���" name="userName" mexlength="20">
+                <input type="number" class="form-control" placeholder=" - 를 제외한 번호를 입력해주세요" name="userName" mexlength="20">
               </div>
               <div class="form-group" style="text-align:center;">
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-primary active">
-                    <input type="radio" name="userGender" autocomplete="off" value="����" checked="">���� </label>
+                    <input type="radio" name="userGender" autocomplete="off" value="남자" checked="">남자 </label>
                   <label class="btn btn-primary">
-                    <input type="radio" name="userGender" autocomplete="off" value="����">���� </label>
+                    <input type="radio" name="userGender" autocomplete="off" value="여자">여자 </label>
                 </div>
               </div>
-              <input type="submit" class="btn btn-primary form-control" value="ȸ������">
+              <input type="submit" class="btn btn-primary form-control" value="회원가입">
             </form>
           </div>
         </div>
@@ -72,8 +69,9 @@
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" style=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" style=""></script>
+  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
 </body>
 
 </html>
