@@ -22,9 +22,9 @@
         <div class="col-md-1   offset-md-3" style="">
           <ul class="nav" style="">
             <li class="nav-item dropdown" style="">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">�����ϱ�</a>
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">접속하기</a>
               <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-                <a class="dropdown-item" href="login.do">�α���</a>
+                <a class="dropdown-item" href="login.do">로그인</a>
                 <a class="dropdown-item" href="join.do">ȸ������</a>
               </div>
             </li>
