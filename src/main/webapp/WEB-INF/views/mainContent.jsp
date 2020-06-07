@@ -265,7 +265,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-4 py-4">
-                      <a href="context.html"  class="card" style="text-decoration: none; color:#3A3A3A;"> <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap">
+                      <a href="context.do"  class="card" style="text-decoration: none; color:#3A3A3A;"> <img class="card-img-top" src="https://static.pingendo.com/cover-moon.svg" alt="Card image cap">
                         <div class="card-body">
                           <h4 class="card-title">Card title</h4>
                           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
