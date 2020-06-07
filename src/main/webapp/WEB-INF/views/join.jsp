@@ -25,7 +25,7 @@
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">접속하기</a>
               <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
                 <a class="dropdown-item" href="login.do">로그인</a>
-                <a class="dropdown-item" href="join.do">ȸ������</a>
+                <a class="dropdown-item" href="join.do">회원가입</a>
               </div>
             </li>
           </ul>
@@ -40,31 +40,31 @@
         <div class="col-md-5" style="">
           <div class="jumbotron pb-3" style="padding-top: 20px;">
             <form method="post" action="joinAction.jsp">
-              <h3 style="text-align:center">ȸ������</h3>
+              <h3 style="text-align:center">회원가입</h3>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="���̵�" name="userID" mexlength="20">
+                <input type="text" class="form-control" placeholder="아이디" name="userID" mexlength="20">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="��й�ȣ" name="userPassword" mexlength="20">
+                <input type="password" class="form-control" placeholder="비밀번호" name="userPassword" mexlength="20">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="�̸�" name="userName" mexlength="20">
+                <input type="text" class="form-control" placeholder="이름" name="userName" mexlength="20">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="�̸���" name="userEmail" mexlength="20">
+                <input type="text" class="form-control" placeholder="이메일" name="userEmail" mexlength="20">
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" placeholder=" - �� ������ ��ȣ�� �Է����ּ���" name="userName" mexlength="20">
+                <input type="number" class="form-control" placeholder=" - 를 제외한 번호를 입력해주세요" name="userName" mexlength="20">
               </div>
               <div class="form-group" style="text-align:center;">
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-primary active">
-                    <input type="radio" name="userGender" autocomplete="off" value="����" checked="">���� </label>
+                    <input type="radio" name="userGender" autocomplete="off" value="male" checked="">남자 </label>
                   <label class="btn btn-primary">
-                    <input type="radio" name="userGender" autocomplete="off" value="����">���� </label>
+                    <input type="radio" name="userGender" autocomplete="off" value="female">여자 </label>
                 </div>
               </div>
-              <input type="submit" class="btn btn-primary form-control" value="ȸ������">
+              <input type="submit" class="btn btn-primary form-control" value="회원가입">
             </form>
           </div>
         </div>
