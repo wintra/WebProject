@@ -60,6 +60,7 @@
 			else {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
+				script.println("alert('회원가입 되었습니다')");
 				script.println("location.href = 'home.do'");
 				script.println("</script>");
 			}

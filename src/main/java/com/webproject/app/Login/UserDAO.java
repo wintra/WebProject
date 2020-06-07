@@ -68,4 +68,25 @@ public class UserDAO {
 		return -1; // 데이터 베이스 오류
 	}
 
+	public int update(User user) {
+		String SQL = "update user set pw = ? , name = ? , email = ? , phone = ? , gender = ? where id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, user.getUserPassword());
+			pstmt.setString(2, user.getUserName());
+			pstmt.setString(3, user.getUserEmail());
+			pstmt.setInt(4, user.getUserPhoneNum());
+			pstmt.setString(5, user.getUserGender());
+			pstmt.setString(6, user.getUserID());
+			
+			System.out.println(pstmt);
+			
+			return pstmt.executeUpdate();
+	
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }

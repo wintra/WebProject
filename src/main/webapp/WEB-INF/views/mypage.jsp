@@ -1,4 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 
@@ -168,29 +170,99 @@
   <header class="Nav">
     <nav id="NavBar"></nav>
   </header>
-  <div class="my-5">
+  <div class="py-1">
+  </div>
+  <div class="mt-3" >
     <div class="container">
       <div class="row">
-        <div class="col-md-12 justify-content-center align-items-center d-flex">
-          <form method = post id="c_form-h" class="w-50 align-items-center justify-content-center" action="loginAction.do">
-            <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">ID</label>
-              <div class="col-10">
-                <input type="name" class="form-control" id="inputmailh" name = "userID" placeholder="Input your ID"> </div>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-3" style="">
+                  <ul class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action" id="accordion1" data-toggle="collapse" data-target="#collapse1" aria-controls="collapse1" aria-expanded="false">
+                      <div class="row">
+                        <div class="col-md-12 pb-3"><img class="img-fluid d-block rounded-circle" src="https://static.pingendo.com/img-placeholder-3.svg" alt="profile">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 justify-content-center">
+                          <h3 class="justify-content-center d-flex mt-2 mb-0 pb-2"><b>고길동</b></h3>
+                          <div class="row">
+                            <div class="col-md-12 d-inline-flex justify-content-center">
+                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                  <input type="radio" name="options" id="option1" autocomplete="off" checked=""> 일반 </label>
+                                <label class="btn btn-primary">
+                                  <input type="radio" name="options" id="option2" autocomplete="off"> 전문가 </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">개인정보</a>
+                    <a href="#" class="list-group-item list-group-item-action">문의내역</a>
+                  </ul>
+                </div>
+                <div class="col-md-8" style="">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="">MY Page</h5>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="jumbotron rounded pb-3 pt-3 mt-3" style="padding-top: 20px;">
+                        <form method="post">
+                          <div class="table-responsive">
+                            <table class="table">
+                              <tbody>
+                                <tr>
+                                  <td class="table-primary">아이디</td>
+                                  <td class=""><span style="font-weight: normal;"><%= userID %></span></td>
+                                </tr>
+                                <tr></tr>
+                                <tr>
+                                  <td class="table-primary"><b>이름</b></td>
+                                  <td>test</td>
+                                </tr>
+                                <tr>
+                                  <td class="table-primary"><b>성별</b></td>
+                                  <td>남성</td>
+                                </tr>
+                                <tr>
+                                  <td class="table-primary"><b>이메일</b></td>
+                                  <td>gogildong@gmail.com</td>
+                                </tr>
+                                <tr>
+                                  <td class="table-primary"><b>전화번호</b></td>
+                                  <td>010-0000-0000</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 d-inline-flex justify-content-center"><a class="btn btn-primary" href="mypageEdit.do">수정하기</a></div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group row"> <label for="inputpasswordh" class="col-2 col-form-label">Password</label>
-              <div class="col-10">
-                <input type="password" class="form-control" id="inputpasswordh" name="userPassword" placeholder="Input your Password"> </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="py-5">
-    <div class="container"></div>
-    <div class="container"></div>
-    <div class="container"></div>
   </div>
   <div class="py-5">
     <div class="container">
@@ -198,7 +270,7 @@
         <div class="col-md-9">
           <p class="lead">Sign up to our newsletter for the latest news</p>
           <form class="form-inline">
-            <div class="form-group"> <input type="email" class="form-control" placeholder="Your e-mail here"> </div> <button type="submit" class="btn ml-3 btn-info">Subscribe</button>
+            <div class="form-group"> <input type="email" class="form-control" placeholder="Your e-mail here"> </div> <button type="submit" class="btn btn-primary ml-3">Subscribe</button>
           </form>
         </div>
         <div class="col-4 col-md-1 align-self-center"> <a href="#">

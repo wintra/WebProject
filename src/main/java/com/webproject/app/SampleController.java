@@ -48,4 +48,24 @@ public class SampleController {
 	public String logoutAction(Locale locale, Model model) {
 		return "logoutAction";
 	}
+	
+	@RequestMapping(value = "mypage.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String mypage(Locale locale, Model model) {
+		return "mypage";
+	}
+	
+	@RequestMapping(value = "mypageEdit.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String mypageEdit(Locale locale, Model model) {
+		return "mypageEdit";
+	}
+	
+	@RequestMapping(value = "mypageEditAction.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String mypageEditAction(Locale locale, Model model) {
+		return "mypageEditAction";
+	}
+	
+	@RequestMapping(value = "mainContent.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String mainContent(Locale locale, Model model) {
+		return "mainContent";
+	}
 }
