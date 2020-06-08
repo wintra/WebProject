@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import = "java.sql.DriverManager" %>
+<%@ page import = "java.sql.Connection" %>
+<%@ page import = "java.sql.Statement" %>
+<%@ page import = "java.sql.ResultSet" %>
+<%@ page import = "java.sql.SQLException" %>
     
 <!DOCTYPE html>
 <html>
@@ -21,11 +26,14 @@
 </head>
 
 <body>
+
 	<%
+	
 		String userID = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
+
 	%>
 	<div class="mt-5">
 		<div class="container">
@@ -170,6 +178,46 @@
   <header class="Nav">
     <nav id="NavBar"></nav>
   </header>
+  
+  <%
+//1. JDBC 드라이버 로딩
+  Class.forName("org.mariadb.jdbc.Driver");
+
+  Connection conn = null; // DBMS와 Java연결객체
+  Statement stmt = null; // SQL구문을 실행
+  ResultSet rs = null; // SQL구문의 실행결과를 저장
+
+  String id, pw, name, email, gender;
+  int phone;
+  
+  try
+  {
+        String jdbcDriver = "jdbc:mariadb://127.0.0.1:3306/webproject?useSSL=false";
+        String dbUser = "root";
+        String dbPass = "test";
+
+        String query = "select * from user where id = \"" + userID + "\"";
+			System.out.println(query);
+        // 2. 데이터베이스 커넥션 생성
+        conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+
+        // 3. Statement 생성
+        stmt = conn.createStatement();
+
+        // 4. 쿼리 실행
+        rs = stmt.executeQuery(query);
+
+        // 5. 쿼리 실행 결과 출력
+        while(rs.next())
+        {
+        	id = rs.getString(1);
+        	pw = rs.getString(2);
+        	name = rs.getString(3);
+        	email = rs.getString(4);
+        	phone = rs.getInt(5);
+        	gender = rs.getString(6);
+        	  
+  %>
   <div class="py-1">
   </div>
   <div class="mt-3" >
@@ -188,7 +236,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12 justify-content-center">
-                          <h3 class="justify-content-center d-flex mt-2 mb-0 pb-2"><b>고길동</b></h3>
+                          <h3 class="justify-content-center d-flex mt-2 mb-0 pb-2"><b><%= rs.getString(3) %></b></h3>
                           <div class="row">
                             <div class="col-md-12 d-inline-flex justify-content-center">
                               <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -221,24 +269,24 @@
                               <tbody>
                                 <tr>
                                   <td class="table-primary">아이디</td>
-                                  <td class=""><span style="font-weight: normal;"><%= userID %></span></td>
+                                  <td><%= rs.getString(1) %></td>
                                 </tr>
                                 <tr></tr>
                                 <tr>
                                   <td class="table-primary"><b>이름</b></td>
-                                  <td>test</td>
+                                  <td><%= rs.getString(3) %></td>
                                 </tr>
                                 <tr>
                                   <td class="table-primary"><b>성별</b></td>
-                                  <td>남성</td>
+                                  <td><%= rs.getString(6) %></td>
                                 </tr>
                                 <tr>
                                   <td class="table-primary"><b>이메일</b></td>
-                                  <td>gogildong@gmail.com</td>
+                                  <td><%= rs.getString(4) %></td>
                                 </tr>
                                 <tr>
                                   <td class="table-primary"><b>전화번호</b></td>
-                                  <td>010-0000-0000</td>
+                                  <td><%= rs.getInt(5) %></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -264,6 +312,21 @@
       </div>
     </div>
   </div>
+  <%
+        }
+  }catch(SQLException ex){
+        out.println(ex.getMessage());
+        ex.printStackTrace();
+  }finally{
+        // 6. 사용한 Statement 종료
+        if(rs != null) try { rs.close(); } catch(SQLException ex) {}
+        if(stmt != null) try { stmt.close(); } catch(SQLException ex) {}
+
+        // 7. 커넥션 종료
+        if(conn != null) try { conn.close(); } catch(SQLException ex) {}
+  }
+  
+  %>
   <div class="py-5">
     <div class="container">
       <div class="row">
