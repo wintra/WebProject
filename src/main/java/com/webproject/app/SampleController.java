@@ -67,6 +67,6 @@ public class SampleController {
 	
 	@RequestMapping(value = "context.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String context(Locale locale, Model model) {
-		return "context";
+		return "Context";
 	}
 }
