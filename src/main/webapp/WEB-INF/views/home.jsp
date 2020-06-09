@@ -102,19 +102,20 @@
 								role="button" aria-haspopup="true" aria-expanded="false">디자인</a>
 								<div class="dropdown-menu" x-placement="bottom-start"
 									style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-									<a class="dropdown-item" href="mainContent.do">포토샵<br></a><a
-										class="dropdown-item" href="#">일러스트레이터</a><a
-										class="dropdown-item" href="#">제품디자인</a><a
-										class="dropdown-item" href="#">건축</a><a class="dropdown-item"
-										href="#">UX/UI디자인</a><a class="dropdown-item" href="#">편집디자인</a><a
-										class="dropdown-item" href="#">캘리그라피</a><a
-										class="dropdown-item" href="#">기타<br></a>
+									<a class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=포토샵">포토샵<br></a><a
+										class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=일러스트레이터">일러스트레이터</a><a
+										class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=제품디자인">제품디자인</a><a
+										class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=건축">건축</a><a 
+										class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=UX/UI디자인">UX/UI디자인</a><a 
+										class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=편집디자인">편집디자인</a><a
+										class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=캘리그라피">캘리그라피</a><a
+										class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=기타">기타<br></a>
 								</div></li>
 							<li class="nav-item dropdown text-capitalize" style=""><a
 								class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
 								role="button" aria-haspopup="true" aria-expanded="false">IT-프로그래밍</a>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">웹개발</a><a
+									<a class="dropdown-item" href="mainContent.do?category=디자인&categoryDetail=기타">웹개발</a><a
 										class="dropdown-item" href="#">앱개발</a><a class="dropdown-item"
 										href="#">보안</a><a class="dropdown-item" href="#">데이터베이스</a><a
 										class="dropdown-item" href="#">알고리즘</a><a

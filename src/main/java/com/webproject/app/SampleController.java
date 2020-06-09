@@ -60,7 +60,7 @@ public class SampleController {
 		return "mypageEditAction";
 	}
 	
-	@RequestMapping(value = "mainContent.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "mainContent.do?*", method = {RequestMethod.GET, RequestMethod.POST})
 	public String mainContent(Locale locale, Model model) {
 		return "mainContent";
 	}
@@ -69,4 +69,10 @@ public class SampleController {
 	public String context(Locale locale, Model model) {
 		return "Context";
 	}
+
+	@RequestMapping(value = "writeContentAction.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String writeContentAction(Locale locale, Model model) {
+		return "writeContentAction";
+	}
+
 }

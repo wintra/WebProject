@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 
@@ -31,7 +32,17 @@
 	margin-left: -200px;
 }
 </style>
-<link href="nav.css" rel="stylesheet" type="text/css">
+</style>
+  <style> .vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 25%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+  </style>
+
 </head>
 
 <body>
@@ -99,9 +110,9 @@
 							<li class="nav-item dropdown text-capitalize" style=""><a
 								class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
 								role="button" aria-haspopup="true" aria-expanded="false">디자인</a>
-								<div class="dropdown-menu" x-placement="bottom-start"
+								<div class="dropdown-menu" x-placement="bottom-start" name = "design" onchange="getCategory()"	
 									style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-									<a class="dropdown-item" href="maincontant.html">포토샵<br></a><a
+									<a class="dropdown-item" href="mainContent.do?content=포토샵">포토샵 <br></a><a
 										class="dropdown-item" href="#">일러스트레이터</a><a
 										class="dropdown-item" href="#">제품디자인</a><a
 										class="dropdown-item" href="#">건축</a><a class="dropdown-item"
@@ -199,7 +210,7 @@
                   <ul class="list-group list-group-flush">
                     <a href="#" class="list-group-item list-group-item-action" id="accordion1" data-toggle="collapse" data-target="#collapse1" aria-controls="collapse1" aria-expanded="false">디자인</a>
                     <div id="collapse1" class="collapse " aria-labelledby="accordion1" data-parent="#accordion1" style="">
-                      <a href="maincontant.html" class="list-group-item list-group-item-action accordion-list"> 포토샵</a>
+                      <a href="mainContent.do"class="list-group-item list-group-item-action accordion-list"> 포토샵</a>
                       <a href="#" class="list-group-item list-group-item-action accordion-list"> 일러스트레이터</a>
                       <a href="#" class="list-group-item list-group-item-action accordion-list"> 제품디자인</a>
                       <a href="#" class="list-group-item list-group-item-action accordion-list"> 건축</a>
@@ -260,7 +271,8 @@
                 <div class="col-md-9">
                   <div class="row">
                     <div class="col-md-12">
-                      <h5 class="">디자인 &gt; 포토샵</h5>
+                      <h5 class=""> <% String cname = request.getParameter("category1"); %>
+                      <%= cname %></h5>
                     </div>
                   </div>
                   <div class="row">
@@ -343,16 +355,20 @@
                   </div>
                   <div class="row"></div>
                   <div class="row">
-                    <div class="col-md-12 justify-content-center d-flex mt-4 pt-3">
-                      <ul class="pagination">
-                        <li class="page-item"> <a class="page-link" href="#">Prev</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#">2</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#">4</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
-                      </ul>
+                    <div class="col-md-4" ></div>
+                    <div class="col-md-4">
+                      <div class="col-md-12 justify-content-center d-flex mt-4 pt-3">
+                        <ul class="pagination">
+                          <li class="page-item"> <a class="page-link" href="#">Prev</a> </li>
+                          <li class="page-item"> <a class="page-link" href="#">1</a> </li>
+                          <li class="page-item"> <a class="page-link" href="#">2</a> </li>
+                          <li class="page-item"> <a class="page-link" href="#">3</a> </li>
+                          <li class="page-item"> <a class="page-link" href="#">4</a> </li>
+                          <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
+                        </ul>
+                      </div>
                     </div>
+                                        <div class="col-md-4"><a class="btn btn-primary vertical-center" href="writeContentAction.do" >컨텐츠 입력하기</a></div>
                   </div>
                 </div>
               </div>
