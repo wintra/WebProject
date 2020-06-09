@@ -60,15 +60,37 @@ public class SampleController {
 		return "mypageEditAction";
 	}
 	
-	@RequestMapping(value = "mainContent.do?*", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "mainContent.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String mainContent(Locale locale, Model model) {
 		return "mainContent";
 	}
 	
-	@RequestMapping(value = "context.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "content.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String context(Locale locale, Model model) {
-		return "Context";
+		return "content";
 	}
+
+	@RequestMapping(value = "orderList.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String orderList(Locale locale, Model model) {
+		return "orderList";
+	}
+	
+	@RequestMapping(value = "soldList.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String soldList(Locale locale, Model model) {
+		return "soldList";
+	}
+	
+	
+	@RequestMapping(value = "expertRegister.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String expertRegister(Locale locale, Model model) {
+		return "expertRegister";
+	}
+	
+	@RequestMapping(value = "writeContent.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public String writeContent(Locale locale, Model model) {
+		return "writeContent";
+	}
+	
 
 	@RequestMapping(value = "writeContentAction.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String writeContentAction(Locale locale, Model model) {

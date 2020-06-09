@@ -15,84 +15,27 @@
       left: 50%;
       margin-left: -200px;
     }
+    .p-0 {
+    margin-top: 150px;
+    
+}
+.mt-5{
+   background: #ffffff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    margin: 0 !important;
+
+}
   </style>
-  <link href="nav.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-<%
-		String userID = null;
-		if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
-	%>
-  <!-- Navigation Menu -->
-  <div class="mt-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2"><i class="fa fa-5x fa-camera-retro"></i></div>
-        <div class="col-md-8"> 
-			<a href="home.do" style="text-decoration: none; ">
-			<h1 class="display-3" style=""><b>LOGO</b></h1>
-			  </a>
-        </div>
-        <div class="col-md-2">
-          <div class="btn-group ml-4 mt-4" style="">
-                <button class="btn dropdown-toggle btn-primary" data-toggle="dropdown">접속하기</button>
-            <div class="dropdown-menu">
-				<a class="dropdown-item" href="login1.html">Login</a>
-				<a class="dropdown-item" href="join1.html">Sign in</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-9 border-bottom" style="">
-          <div class="col-offset-1 col-md-12">
-            <ul class="nav mt-2" style="">
-              <li class="nav-item dropdown text-capitalize" style="">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">디자인</a>
-                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-                  <a class="dropdown-item" href="#">포토샵<br></a><a class="dropdown-item" href="#">일러스트레이터</a><a class="dropdown-item" href="#">제품디자인</a><a class="dropdown-item" href="#">건축</a><a class="dropdown-item" href="#">UX/UI디자인</a><a class="dropdown-item" href="#">편집디자인</a><a class="dropdown-item" href="#">캘리그라피</a><a class="dropdown-item" href="#">기타<br></a></div>
-              </li>
-              <li class="nav-item dropdown text-capitalize" style="">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">IT-프로그래밍</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">웹개발</a><a class="dropdown-item" href="#">앱개발</a><a class="dropdown-item" href="#">보안</a><a class="dropdown-item" href="#">데이터베이스</a><a class="dropdown-item" href="#">알고리즘</a><a class="dropdown-item" href="#">게임</a><a class="dropdown-item" href="#">기타 </a></div>
-              </li>
-              <li class="nav-item dropdown text-capitalize" style="">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">콘텐츠&nbsp;제작</a>
-                <div class="dropdown-menu"><a class="dropdown-item" href="#">영상촬영-편집</a><a class="dropdown-item" href="#">사진촬영</a><a class="dropdown-item" href="#">애니메이션</a><a class="dropdown-item" href="#">유튜브제작</a><a class="dropdown-item" href="#">음악</a><a class="dropdown-item" href="#">더빙-녹음</a><a class="dropdown-item" href="#">기타</a></div>
-              </li>
-              <li class="nav-item dropdown text-capitalize" style="">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">번역,통역</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">번역<br></a><a class="dropdown-item" href="#">통역</a><a class="dropdown-item" href="#">영상번역</a><a class="dropdown-item" href="#">기타<br></a></div>
-              </li>
-              <li class="nav-item dropdown text-capitalize" style="">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">문서</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">MS-office</a><a class="dropdown-item" href="#">논문</a><a class="dropdown-item" href="#">자소서</a><a class="dropdown-item" href="#">타이핑</a><a class="dropdown-item" href="#">글작성</a><a class="dropdown-item" href="#">기타</a></div>
-              </li>
-              <li class="nav-item dropdown text-capitalize" style="">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">레슨.실무교육</a>
-                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-                  <a class="dropdown-item" href="#">프로그래밍</a><a class="dropdown-item" href="#">그래픽디자인</a><a class="dropdown-item" href="#">데이터분석</a><a class="dropdown-item" href="#">유튜브-영상&amp;사진</a><a class="dropdown-item" href="#">외국어</a><a class="dropdown-item" href="#">프레젠테이션</a><a class="dropdown-item" href="#">취미-라이프<br></a><a class="dropdown-item" href="#">기타<br></a></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3 border-bottom" style="">
-          <form class="form-inline">
-            <div class="input-group">
-              <input type="text" class="form-control mt-2" id="inlineFormInputGroup" placeholder="Search">
-              <div class="input-group-append"><button class="btn btn-primary mt-2" type="button"><i class="fa fa-search"></i></button></div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+
+   <jsp:include page="header.jsp"></jsp:include>
+   
   <header class="Nav">
     <nav id="NavBar"></nav>
   </header>
@@ -142,19 +85,19 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="jumbotron rounded pb-3 pt-3 mt-3" style="padding-top: 20px;">
-                        <form method="post" action="mypageEditAction.do" >
+                        <form method="post" action="joinAction.jsp">
                           <div class="table-responsive">
                             <table class="table">
                               <thead>
                                 <tr>
                                   <td class="table-primary">아이디</td>
-                                  <td class="" colspan="2"  style="text-align:left"><%= userID%><span style="font-weight: normal;"></span></td>
+                                  <td class="" colspan="2"  style="text-align:left">testID<span style="font-weight: normal;"></span></td>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
                                   <td class="table-primary"><b>비밀번호</b></td>
-                                  <td contenteditable="true" class="m-1 p-1" colspan="2"><input type="password" class="form-control" placeholder="비밀번호" name="userPassword" mexlength="20"></td>
+                                  <td contenteditable="true" class="m-1 p-1" colspan="2"><input type="password" class="form-control" placeholder="비밀번호" name="userID" mexlength="20"></td>
                                 </tr>
                                 <tr>
                                   <td class="table-primary"><b>이름</b></td>
@@ -163,8 +106,8 @@
                                 </tr>
                                 <tr>
                                   <td class="table-primary"><b>성별</b></td>
-                                  <td class="" style="text-align: center;"><input type="radio" name="userGender" autocomplete="off" value="male" checked="">남자</td>
-                                  <td class="" style="text-align: center;"><input type="radio" name="userGender" autocomplete="off" value="female">여자 </td>
+                                  <td class="" style="text-align: center;"><input type="radio" name="userGender" autocomplete="off" value="남자" checked="">남자</td>
+                                  <td class="" style="text-align: center;"><input type="radio" name="userGender" autocomplete="off" value="여자">여자 </td>
                                 </tr>
                                 <tr>
                                   <td class="table-primary"><b>이메일</b></td>
@@ -173,14 +116,14 @@
                                 </tr>
                                 <tr>
                                   <td class="table-primary"><b>전화번호</b></td>
-                                  <th class="m-1 p-1" colspan="2"><input type="number" class="form-control" placeholder=" - 를 제외한 번호를 입력해주세요" name="userPhoneNumber" mexlength="20">
+                                  <th class="m-1 p-1" colspan="2"><input type="tel" class="form-control" placeholder=" - 를 제외한 번호를 입력해주세요" name="userNuber" mexlength="20">
                                   </th>
                                 </tr>
                               </tbody>
                             </table>
                           </div>
                           <div class="row">
-                            <div class="col-md-12 d-inline-flex justify-content-center"> <input type="submit" class="btn btn-primary" value="수정하기"></div>
+                            <div class="col-md-12 d-inline-flex justify-content-center"><a class="btn btn-primary" href="mypage.html">수정하기</a></div>
                           </div>
                         </form>
                       </div>
@@ -200,36 +143,7 @@
       </div>
     </div>
   </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9">
-          <p class="lead">Sign up to our newsletter for the latest news</p>
-          <form class="form-inline">
-            <div class="form-group"> <input type="email" class="form-control" placeholder="Your e-mail here"> </div> <button type="submit" class="btn btn-primary ml-3">Subscribe</button>
-          </form>
-        </div>
-        <div class="col-4 col-md-1 align-self-center"> <a href="#">
-            <i class="fa fa-fw fa-facebook text-muted fa-2x"></i>
-          </a> </div>
-        <div class="col-4 col-md-1 align-self-center"> <a href="#">
-            <i class="fa fa-fw fa-twitter text-muted fa-2x"></i>
-          </a> </div>
-        <div class="col-4 col-md-1 align-self-center"> <a href="#">
-            <i class="fa fa-fw fa-instagram text-muted fa-2x"></i>
-          </a> </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 mt-3 text-center">
-          <p>© Copyright 2018 Pingendo - All rights reserved.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
+  <jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>
