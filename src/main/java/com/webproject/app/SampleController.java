@@ -29,22 +29,7 @@ public class SampleController {
 	public String join(Locale locale, Model model) {
 		return "join";
 	}
-	
-	@RequestMapping(value = "joinAction.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String joinAction(Locale locale, Model model) {
-		return "joinAction";
-	}
-	
-	@RequestMapping(value = "loginAction.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String loginAction(Locale locale, Model model) {
-		return "loginAction";
-	}
-	
-	@RequestMapping(value = "logoutAction.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String logoutAction(Locale locale, Model model) {
-		return "logoutAction";
-	}
-	
+
 	@RequestMapping(value = "mypage.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String mypage(Locale locale, Model model) {
 		return "mypage";
@@ -54,12 +39,7 @@ public class SampleController {
 	public String mypageEdit(Locale locale, Model model) {
 		return "mypageEdit";
 	}
-	
-	@RequestMapping(value = "mypageEditAction.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public String mypageEditAction(Locale locale, Model model) {
-		return "mypageEditAction";
-	}
-	
+
 	@RequestMapping(value = "mainContent.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String mainContent(Locale locale, Model model) {
 		return "mainContent";

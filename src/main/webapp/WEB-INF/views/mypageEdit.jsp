@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,13 +27,23 @@
     left: 0;
     z-index: 1030;
     margin: 0 !important;
-
 }
   </style>
 </head>
 
 <body>
-
+<%
+      String userID = null;
+      if (session.getAttribute("userID") != null) {
+         userID = (String) session.getAttribute("userID");
+      }
+      
+      String userName = (String) session.getAttribute("userName");
+      String userEmail = (String) session.getAttribute("userEmail");
+      int userPhoneNum = (Integer) session.getAttribute("userPhoneNum");
+      String userGender = (String) session.getAttribute("userGender");
+      
+   %>
    <jsp:include page="header.jsp"></jsp:include>
    
   <header class="Nav">
@@ -58,7 +68,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12 justify-content-center">
-                          <h3 class="justify-content-center d-flex mt-2 mb-0 pb-2"><b>고길동</b></h3>
+                          <h3 class="justify-content-center d-flex mt-2 mb-0 pb-2"><b><%= userName %></b></h3>
                           <div class="row">
 							 <div class="col-md-12 d-inline-flex justify-content-center">
 								<div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -85,19 +95,19 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="jumbotron rounded pb-3 pt-3 mt-3" style="padding-top: 20px;">
-                        <form method="post" action="joinAction.jsp">
+                        <form method="post">
                           <div class="table-responsive">
                             <table class="table">
                               <thead>
                                 <tr>
                                   <td class="table-primary">아이디</td>
-                                  <td class="" colspan="2"  style="text-align:left">testID<span style="font-weight: normal;"></span></td>
+                                  <td class="" colspan="2"  style="text-align:left"><%= userID %><span style="font-weight: normal;"></span></td>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
                                   <td class="table-primary"><b>비밀번호</b></td>
-                                  <td contenteditable="true" class="m-1 p-1" colspan="2"><input type="password" class="form-control" placeholder="비밀번호" name="userID" mexlength="20"></td>
+                                  <td contenteditable="true" class="m-1 p-1" colspan="2"><input type="password" class="form-control" placeholder="비밀번호" name="userPassword" mexlength="20"></td>
                                 </tr>
                                 <tr>
                                   <td class="table-primary"><b>이름</b></td>
@@ -123,7 +133,7 @@
                             </table>
                           </div>
                           <div class="row">
-                            <div class="col-md-12 d-inline-flex justify-content-center"><a class="btn btn-primary" href="mypage.html">수정하기</a></div>
+                            <div class="col-md-12 d-inline-flex justify-content-center"><a class="btn btn-primary" href="UserUpdate">수정하기</a></div>
                           </div>
                         </form>
                       </div>

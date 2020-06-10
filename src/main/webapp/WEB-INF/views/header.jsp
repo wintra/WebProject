@@ -81,7 +81,7 @@ b, strong {
                            <div class="dropdown-menu">
                               <a class="dropdown-item" href="mypage.do">내정보</a> 
                               <a class="dropdown-item" href="expertRegister.do">전문가 등록</a> 
-                              <a class="dropdown-item" href="logoutAction.do">로그아웃</a>
+                              <a class="dropdown-item" href="logoutAction">로그아웃</a>
                            </div>
                         </div>
                      

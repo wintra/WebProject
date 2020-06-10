@@ -50,12 +50,52 @@
   </filter-mapping>
   <servlet>
     <description></description>
-    <display-name>getCategoryName</display-name>
-    <servlet-name>getCategoryName</servlet-name>
-    <servlet-class>com.webproject.app.Servlet.getCategoryName</servlet-class>
+    <display-name>UserServlet</display-name>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.UserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>getCategoryName</servlet-name>
-    <url-pattern>/getCategoryName</url-pattern>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/setSession</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserLogin</display-name>
+    <servlet-name>UserLogin</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.UserLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserLogin</servlet-name>
+    <url-pattern>/loginAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserJoin</display-name>
+    <servlet-name>UserJoin</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.UserJoin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserJoin</servlet-name>
+    <url-pattern>/joinAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserLogout</display-name>
+    <servlet-name>UserLogout</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.UserLogout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserLogout</servlet-name>
+    <url-pattern>/logoutAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserUpdate</display-name>
+    <servlet-name>UserUpdate</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.UserUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserUpdate</servlet-name>
+    <url-pattern>/UserUpdate</url-pattern>
   </servlet-mapping>
 </web-app>

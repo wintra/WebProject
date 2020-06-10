@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDAO {
 
@@ -30,7 +31,7 @@ public class UserDAO {
 	public int login(String userID, String userPassword) {
 		
 		String SQL = "SELECT pw FROM user WHERE id = ?";
-
+		
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
@@ -50,20 +51,33 @@ public class UserDAO {
 
 	public int join(User user) {
 		String SQL = "insert into user values(?,?,?,?,?,?)";
-
+		
+		String existSQL = "select id from user where id = ?";
 		try {
-			pstmt = conn.prepareStatement(SQL);
+			pstmt = conn.prepareStatement(existSQL);
 			pstmt.setString(1, user.getUserID());
-			pstmt.setString(2, user.getUserPassword());
-			pstmt.setString(3, user.getUserName());
-			pstmt.setString(4, user.getUserEmail());
-			pstmt.setInt(5, user.getUserPhoneNum());
-			pstmt.setString(6, user.getUserGender());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				return -1;
+			}
+			
+			else {
+				pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1, user.getUserID());
+				pstmt.setString(2, user.getUserPassword());
+				pstmt.setString(3, user.getUserName());
+				pstmt.setString(4, user.getUserEmail());
+				pstmt.setInt(5, user.getUserPhoneNum());
+				pstmt.setString(6, user.getUserGender());
 
-			return pstmt.executeUpdate();
+				return pstmt.executeUpdate();
+			}
+				
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		return -1; // 데이터 베이스 오류
 	}

@@ -34,7 +34,6 @@
     margin-top: 8.5rem;
 }
   </style>
-  <link href="nav.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -47,7 +46,7 @@
       <div class="row">
         <div class="col-md-12 d-flex justify-content-center my-4">
           <div class="jumbotron pl-4 pb-3 pr-4 ml-5 mr-5 d-flex justify-content-around flex-column-reverse align-items-center w-50" style="padding-top: 20px;">
-            <form method="post" action="joinAction.do" class="w-75">
+            <form method="post" action="joinAction" class="w-75">
               <h3 style="text-align:center">회원가입</h3>
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="아이디" name="userID" mexlength="20">
@@ -67,9 +66,9 @@
               <div class="form-group w-100" style="text-align:center;">
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-primary active">
-                    <input type="radio" name="userGender" autocomplete="off" value="male" checked="">남자 </label>
+                    <input type="radio" name="userGender" autocomplete="off" value="남자" checked="">남자 </label>
                   <label class="btn btn-primary">
-                    <input type="radio" name="userGender" autocomplete="off" value="female">여자 </label>
+                    <input type="radio" name="userGender" autocomplete="off" value="여자">여자 </label>
                 </div>
               </div>
               <input type="submit" class="btn btn-primary form-control" value="회원가입">
