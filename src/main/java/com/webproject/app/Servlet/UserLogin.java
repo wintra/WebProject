@@ -50,7 +50,7 @@ public class UserLogin extends HttpServlet {
 		
 		UserDAO userDAO = new UserDAO();
 		
-		System.out.println("test");
+		
 		
 		int result= userDAO.login(userID, userPW);
 		

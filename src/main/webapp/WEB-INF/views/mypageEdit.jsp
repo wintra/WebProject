@@ -39,10 +39,6 @@
       }
       
       String userName = (String) session.getAttribute("userName");
-      String userEmail = (String) session.getAttribute("userEmail");
-      int userPhoneNum = (Integer) session.getAttribute("userPhoneNum");
-      String userGender = (String) session.getAttribute("userGender");
-      
    %>
    <jsp:include page="header.jsp"></jsp:include>
    
@@ -53,7 +49,7 @@
     <div class="container">
     </div>
   </div>
-  <div class="mt-3">
+  <div class="p-0">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
