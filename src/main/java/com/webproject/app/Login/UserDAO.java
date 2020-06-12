@@ -54,11 +54,12 @@ public class UserDAO {
 		String SQL = "insert into user values(?,?,?,?,?,?)";
 		
 		String existSQL = "select id from user where id = ?";
+		
 		try {
 			pstmt = conn.prepareStatement(existSQL);
 			pstmt.setString(1, user.getUserID());
 			rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				return -1;
 			}
@@ -160,4 +161,29 @@ public class UserDAO {
 	}
 	
 	
+	public int isExpert(String id) {
+		String SQL = "select id from talent where id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				return 1;
+			}
+			
+			else {
+				return 0;
+			}
+				
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
 }

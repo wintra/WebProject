@@ -5,6 +5,7 @@
 <%@ page import="java.sql.Statement"%>
 <%@ page import="java.sql.ResultSet"%>
 <%@ page import="java.sql.SQLException"%>
+<%@ page import="com.webproject.app.Login.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -48,11 +49,12 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-
 		String userName = (String) session.getAttribute("userName");
 		String userEmail = (String) session.getAttribute("userEmail");
 		int userPhoneNum = (Integer) session.getAttribute("userPhoneNum");
 		String userGender = (String) session.getAttribute("userGender");
+		
+		UserDAO userDAO = new UserDAO();
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -89,21 +91,32 @@
 															class="col-md-12 d-inline-flex justify-content-center">
 															<div class="btn-group btn-group-toggle"
 																data-toggle="buttons">
+																
+																<% if(userDAO.isExpert(userID) == 0) {%>
 																<label class="btn btn-primary active"> <input
 																	type="radio" name="options" id="option1"
 																	autocomplete="off" checked=""> 일반
-																</label> <label class="btn btn-primary"> <input
+																</label> 
+																
+																<% } else if(userDAO.isExpert(userID) == 1);
+																boolean isExpert = true;{%>
+																<label class="btn btn-primary"> <input
 																	type="radio" name="options" id="option2"
 																	autocomplete="off"> 전문가
 																</label>
+																
+																<% } %>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<a href="#" class="list-group-item list-group-item-action">개인정보</a>
-										<a href="#" class="list-group-item list-group-item-action">문의내역</a>
+										<a href="orderList.do" class="list-group-item list-group-item-action">구매내역</a>
+										<% if(isExpert == true){ %>
+										<a href="soldList.do" class="list-group-item list-group-item-action">판매내역</a>
+										<% } %>
+										
 									</ul>
 								</div>
 								<div class="col-md-8" style="">

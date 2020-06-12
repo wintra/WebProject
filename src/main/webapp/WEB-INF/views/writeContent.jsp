@@ -37,6 +37,7 @@
 	margin: 0 !important;
 }
 </style>
+
 <style>
 .centered {
 	width: 1000px;
@@ -50,9 +51,107 @@ input:focus, textarea:focus {
 	outline: none;
 }
 </style>
+
 </head>
 
 <body>
+	<script type="text/javascript">
+		$(function() {
+
+			// 질문유형을 선택한다.
+			chnQnaType('0', '01');
+		});
+
+		function chnQnaType(type, select) {
+
+			$('#categoryDetail').empty();
+
+			if (type == '0') { // 상품관련
+				$('#categoryDetail').append(
+						"<option value='01' >-----</option>");
+			} else if (type == '1') { // 일반관련
+				$('#categoryDetail')
+						.append("<option value='100' >포토샵</option>");
+				$('#categoryDetail').append(
+						"<option value='101' >일러스트레이터</option>");
+				$('#categoryDetail').append(
+						"<option value='102' >제품디자인</option>");
+				$('#categoryDetail').append("<option value='103' >건축</option>");
+				$('#categoryDetail').append(
+						"<option value='104' >UX/UI디자인</option>");
+				$('#categoryDetail').append(
+						"<option value='105' >편집디자인</option>");
+				$('#categoryDetail').append(
+						"<option value='106' >캘리그라피</option>");
+				$('#categoryDetail').append("<option value='107' >기타</option>");
+			} else if (type == '2') { // 일반관련
+				$('#categoryDetail')
+						.append("<option value='200' >웹개발</option>");
+				$('#categoryDetail')
+						.append("<option value='201' >앱개발</option>");
+				$('#categoryDetail').append("<option value='202' >보안</option>");
+				$('#categoryDetail').append(
+						"<option value='203' >데이터베이스</option>");
+				$('#categoryDetail').append(
+						"<option value='204' >알고리즘</option>");
+				$('#categoryDetail').append("<option value='205' >게임</option>");
+				$('#categoryDetail').append("<option value='206' >기타</option>");
+			} else if (type == '3') { // 주문관련
+				$('#categoryDetail').append(
+						"<option value='300' >영상촬영-편집</option>");
+				$('#categoryDetail').append(
+						"<option value='301' >사진촬영</option>");
+				$('#categoryDetail').append(
+						"<option value='302' >애니메이션</option>");
+				$('#categoryDetail').append(
+						"<option value='303' >유튜브제작</option>");
+				$('#categoryDetail').append("<option value='304' >음악</option>");
+				$('#categoryDetail').append(
+						"<option value='305' >더빙-녹음</option>");
+				$('#categoryDetail').append("<option value='306' >기타</option>");
+			} else if (type == '4') { // 주문관련
+				$('#categoryDetail').append("<option value='400' >번역</option>");
+				$('#categoryDetail').append("<option value='401' >통역</option>");
+				$('#categoryDetail').append(
+						"<option value='402' >영상번역</option>");
+				$('#categoryDetail').append("<option value='403' >기타</option>");
+			} else if (type == '5') { // 주문관련
+				$('#categoryDetail').append(
+						"<option value='500' >MS-office</option>");
+				$('#categoryDetail').append("<option value='501' >논문</option>");
+				$('#categoryDetail')
+						.append("<option value='502' >자소서</option>");
+				$('#categoryDetail')
+						.append("<option value='503' >타이핑</option>");
+				$('#categoryDetail')
+						.append("<option value='504' >글작성</option>");
+				$('#categoryDetail').append("<option value='505' >기타</option>");
+			} else if (type == '6') { // 주문관련
+				$('#categoryDetail').append(
+						"<option value='600' >프로그래밍</option>");
+				$('#categoryDetail').append(
+						"<option value='601' >그래픽디자인</option>");
+				$('#categoryDetail').append(
+						"<option value='602' >데이터분석</option>");
+				$('#categoryDetail').append(
+						"<option value='603' >유튜브-영상/사진</option>");
+				$('#categoryDetail')
+						.append("<option value='604' >외국어</option>");
+				$('#categoryDetail').append(
+						"<option value='605' >프레젠테이션</option>");
+				$('#categoryDetail').append(
+						"<option value='606' >취미-라이프</option>");
+				$('#categoryDetail').append("<option value='607' >기타</option>");
+			}
+			document.getElementById("categoryDetail").style.display = "";
+
+			if ($.trim(select) != "") {
+				$('#category').val(type);
+				$('#categoryDetail').val(select);
+			}
+		}
+	</script>
+
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<header class="Nav">
@@ -76,21 +175,20 @@ input:focus, textarea:focus {
 												<div class="row">
 													<div class="col-md-8" style="">
 														<div class="p-2 d-flex">
-															<select name="category" size="1">
-																<option value="design">디자인</option>
-																<option value="IT">IT/프로그래밍</option>
-																<option value="contents">콘텐츠 제작</option>
-																<option value="translation">번역/통역</option>
-																<option value="document">문서</option>
-																<option value="lesson">레슨/실무</option>
-															</select> <select name="categoryDetail" size="1">
-																<option value="design">디자인</option>
-																<option value="IT">IT/프로그래밍</option>
-																<option value="contents">콘텐츠 제작</option>
-																<option value="translation">번역/통역</option>
-																<option value="document">문서</option>
-																<option value="lesson">레슨/실무</option>
+															<select name="category" id="category" size="1"
+																onChange="chnQnaType(this.value)">
+																<option value="0">카테고리</option>
+																<option value="1">디자인</option>
+																<option value="2">IT/프로그래밍</option>
+																<option value="3">콘텐츠 제작</option>
+																<option value="4">번역/통역</option>
+																<option value="5">레슨/실무</option>
+																<option value="6">문서</option>
+															</select> <b> &nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp; </b> <select
+																id="categoryDetail" name="categoryDetail" size="1"
+																style="width: 120px;">
 															</select>
+
 														</div>
 														<div class="row">
 															<div class="col-md-12 d-flex justify-content-center">
@@ -103,23 +201,18 @@ input:focus, textarea:focus {
 														</div>
 														<div class="row">
 															<div class="col-md-12 mt-3">
-
-
-																<input type="file" , name="uploadfile"
+																<input type="file" name="uploadfile"
 																	accept="image/gif, image/jpeg, image/png"
 																	placeholder="파일 선택" /><br />
-
-
-
 																<ul class="nav nav-tabs">
-																	<li class="nav-item"><a href="" class="nav-link"
-																		data-toggle="tab" data-target="#tabone">서비스 설명</a></li>
+																	<li class="nav-item"><a href=""
+																		class="nav-link active" data-toggle="tab"
+																		data-target="#tabone">서비스 설명</a></li>
 																	<li class="nav-item"><a class="nav-link"
 																		data-toggle="tab" data-target="#tabtwo" href="">가격
 																			정보</a></li>
-																	<li class="nav-item"><a href=""
-																		class="nav-link active" data-toggle="tab"
-																		data-target="#tabthree">수정/재진행</a></li>
+																	<li class="nav-item"><a href="" class="nav-link"
+																		data-toggle="tab" data-target="#tabthree">수정/재진행</a></li>
 																	<li class="nav-item"><a href="" class="nav-link"
 																		data-toggle="tab" data-target="#tabfour">취소/환불 규정</a></li>
 																</ul>
@@ -154,7 +247,7 @@ input:focus, textarea:focus {
 														<div class="row">
 															<div class="col-md-12" style="">
 																<h4 class="" style="">
-																	<b>1달 안에 포토샵 완성</b>
+																	<b>제목</b> <input type="text" name="subject" size="20">
 																</h4>
 																<div class="row">
 																	<div class="col-md-12 py-2">
@@ -174,8 +267,10 @@ input:focus, textarea:focus {
 																					<tr>
 																						<td class="border-right border-primary">기간</td>
 																						<td
-																							class="border-left border-bottom border-primary"><input
-																							type="text" name="period" size="20"
+																							class="border-left border-bottom border-primary"><b>시작</b><input
+																							type="date" name="start-period" size="20"
+																							style="width: 100%; border: 0;"> <b>종료</b><input
+																							type="date" name="end-period" size="20"
 																							style="width: 100%; border: 0;"></td>
 																					</tr>
 																					<tr>
@@ -186,6 +281,15 @@ input:focus, textarea:focus {
 																								<option value="offline">오프라인</option>
 																								<option value="online">온라인</option>
 																						</select></td>
+																					</tr>
+																					<tr>
+																						<td class="border-right border-primary">총 인원수</td>
+																						<td class="border-left border-primary d-flex"
+																							style="text-align: center;"><input
+																							type="number" id="maxPeople" name="maxPeople"
+																							min="0" value="0"
+																							style="width: 100px; height: 40px; border-style: none;">
+																						</td>
 																					</tr>
 																				</tbody>
 																			</table>
@@ -231,15 +335,11 @@ input:focus, textarea:focus {
 																					</tr>
 																					<tr>
 																						<td>소개</td>
-																						<td><textarea cols="30" name="tabone"
-																								rows="5"
-																								style="width: 100%; border: 0; resize: none;"></textarea></td>
+																						<td>test</td>
 																					</tr>
 																					<tr>
 																						<td>경력</td>
-																						<td><textarea cols="30" name="tabone"
-																								rows="5"
-																								style="width: 100%; border: 0; resize: none;"></textarea></td>
+																						<td>test</td>
 																					</tr>
 																				</tbody>
 																			</table>
@@ -255,7 +355,6 @@ input:focus, textarea:focus {
 													</div>
 												</div>
 											</div>
-
 										</form>
 									</div>
 								</div>

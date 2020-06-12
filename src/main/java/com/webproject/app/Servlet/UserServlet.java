@@ -85,8 +85,7 @@ public class UserServlet extends HttpServlet {
 				
 				
 			}
-		    
-		    System.out.println(session.getAttribute("userPassword"));
+
 		    System.out.println(session.getAttribute("userName"));
 		    System.out.println(session.getAttribute("userEmail"));
 		    System.out.println(session.getAttribute("userPhoneNum"));

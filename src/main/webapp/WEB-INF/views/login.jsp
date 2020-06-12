@@ -45,7 +45,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 justify-content-center align-items-center d-flex">
-          <form method = post id="c_form-h" class="w-50 align-items-center justify-content-center" action="loginActionTest">
+          <form method = post id="c_form-h" class="w-50 align-items-center justify-content-center" action="loginAction">
             <div class="form-group row"> <label for="inputmailh" class="col-2 col-form-label">ID</label>
               <div class="col-10">
                 <input type="name" class="form-control" id="inputmailh" name = "userID" placeholder="Input your ID"> </div>

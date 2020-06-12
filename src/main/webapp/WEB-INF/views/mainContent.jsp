@@ -66,8 +66,7 @@
 </head>
 
 <body>
-
-   <jsp:include page="header.jsp"></jsp:include>
+	 <jsp:include page="header.jsp"></jsp:include>
   <header class="Nav">
     <nav id="NavBar"></nav>
   </header>

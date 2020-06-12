@@ -42,7 +42,7 @@ public class UserLogin extends HttpServlet {
 		
 		System.out.println(userID + userPW);
 		if(userID != null){
-			out.println("<script type=\\\"text/javascript\\\">");
+			out.println("<script>");
 			out.println("alert('이미로그인이 되어있습니다.');");
 			out.println("history.back()");
 			out.println("</script>");
