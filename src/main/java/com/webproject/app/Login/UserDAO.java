@@ -1,6 +1,7 @@
 package com.webproject.app.Login;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,4 +104,60 @@ public class UserDAO {
 		}
 		return -1;
 	}
+	
+	public int updateExpert(Talent talent) {
+		String SQL = "update user set nickname = ? ,profield = ? , education = ?,state = ? , major = ?, certificate = ?,certificate_date = ?,certificate_state = ?,accountNum = ?,bank = ?,technology=? where id = ?";
+		
+		try {
+		
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, talent.getId());
+			pstmt.setString(2, talent.getNickname());
+			pstmt.setString(3, talent.getProfield());
+			pstmt.setString(4, talent.getTechnology()); //보유기술
+			pstmt.setString(5, talent.getEducation());
+			pstmt.setString(6, talent.getState());
+			pstmt.setString(7, talent.getMajor());
+			pstmt.setString(8, talent.getCertificate());
+			pstmt.setString(9, talent.getCertificate_date());
+			pstmt.setString(10, talent.getCertificate_state());
+			pstmt.setInt(11, talent.getAccountNum());
+			pstmt.setString(12, talent.getBank());
+			
+			System.out.println(pstmt);
+			return pstmt.executeUpdate();
+	
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	public int expertRegister(Talent talent) {
+		String SQL = "insert into talent values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			System.out.println(SQL);
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, talent.getId());
+			pstmt.setString(2, talent.getNickname());
+			pstmt.setString(3, talent.getProfield());
+			pstmt.setString(4, talent.getTechnology()); //보유기술
+			pstmt.setString(5, talent.getEducation());
+			pstmt.setString(6, talent.getState());
+			pstmt.setString(7, talent.getMajor());
+			pstmt.setString(8, talent.getCertificate());
+			pstmt.setString(9, talent.getCertificate_date());
+			pstmt.setString(10, talent.getCertificate_state());
+			pstmt.setInt(11, talent.getAccountNum());
+			pstmt.setString(12, talent.getBank());
+			
+
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터 베이스 오류
+	}
+	
+	
 }

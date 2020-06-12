@@ -30,7 +30,6 @@ public class UserJoin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
-		HttpSession session=request.getSession();
 		PrintWriter out = response.getWriter();
 		
 		String userID = request.getParameter("userID");

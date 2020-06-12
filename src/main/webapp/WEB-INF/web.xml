@@ -98,4 +98,24 @@
     <servlet-name>UserUpdate</servlet-name>
     <url-pattern>/UserUpdate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WriteContent</display-name>
+    <servlet-name>WriteContent</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.WriteContent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WriteContent</servlet-name>
+    <url-pattern>/WriteContent</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TalentRegister</display-name>
+    <servlet-name>TalentRegister</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.TalentRegister</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TalentRegister</servlet-name>
+    <url-pattern>/talentRegisterAction</url-pattern>
+  </servlet-mapping>
 </web-app>
