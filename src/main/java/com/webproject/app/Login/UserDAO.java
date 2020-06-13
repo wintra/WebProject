@@ -95,8 +95,20 @@ public class UserDAO {
 			pstmt.setInt(4, user.getUserPhoneNum());
 			pstmt.setString(5, user.getUserGender());
 			pstmt.setString(6, user.getUserID());
-			
-			System.out.println(pstmt);
+			return pstmt.executeUpdate();
+	
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int withdrawal(String userID) {
+		String SQL = "delete from user where userID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
 			
 			return pstmt.executeUpdate();
 	
@@ -124,8 +136,7 @@ public class UserDAO {
 			pstmt.setString(10, talent.getCertificate_state());
 			pstmt.setInt(11, talent.getAccountNum());
 			pstmt.setString(12, talent.getBank());
-			
-			System.out.println(pstmt);
+
 			return pstmt.executeUpdate();
 	
 		}catch (Exception e) {
@@ -135,7 +146,6 @@ public class UserDAO {
 	}
 	public int expertRegister(Talent talent) {
 		String SQL = "insert into talent values(?,?,?,?,?,?,?,?,?,?,?,?)";
-			System.out.println(SQL);
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, talent.getId());

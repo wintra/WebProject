@@ -28,7 +28,7 @@ public class BoardDAO {
 	}
 
 	public int writeContent(String id, Board board) {
-		String SQL = "insert into board (id , categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String SQL = "insert into board (id , categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople, score) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
 
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -44,8 +44,8 @@ public class BoardDAO {
 			pstmt.setString(10, board.getEndDate());
 			pstmt.setString(11, board.getProgress());
 			pstmt.setInt(12, board.getMaxPeople());
-			
-			System.out.println(pstmt);
+
+
 
 			return pstmt.executeUpdate();
 
@@ -53,6 +53,79 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 		return -1; // db오류
+	}
+
+	public int reviseContent(int boardNum, Board board) {
+		String SQL = "update board set categoryNum =? ,tabone =? , tabtwo =? , tabthree =? , tabfour =? , subject =? , price =? , startDate =? , endDate =? , progress =? , maxPeople =? where boardNum=?";
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, board.getCategoryNum());
+			pstmt.setString(2, board.getTabone());
+			pstmt.setString(3, board.getTabtwo());
+			pstmt.setString(4, board.getTabthree());
+			pstmt.setString(5, board.getTabfour());
+			pstmt.setString(6, board.getSubject());
+			pstmt.setInt(7, board.getPrice());
+			pstmt.setString(8, board.getStartDate());
+			pstmt.setString(9, board.getEndDate());
+			pstmt.setString(10, board.getProgress());
+			pstmt.setInt(11, board.getMaxPeople());
+			pstmt.setInt(12, boardNum);
+
+			
+
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // db오류
+	}
+
+	public int deleteContent(int boardNum) {
+		String SQL = "delte from board where boardNum=?";
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, boardNum);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // db오류
+	}
+	
+	
+	public Board returnBoard(int boardNum) {  
+		Board board = new Board();
+		String SQL = "select categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople from board where boardNum ="
+				+ boardNum + ";";
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				board.setCategoryNum(rs.getInt("categoryNum"));
+				board.setTabone(rs.getString("tabone"));
+				board.setTabtwo(rs.getString("tabtwo"));
+				board.setTabthree(rs.getString("tabthree"));
+				board.setTabfour(rs.getString("tabfour"));		
+				board.setSubject(rs.getString("subject"));
+				board.setPrice(rs.getInt("price"));
+				board.setStartDate(rs.getString("startDate"));
+				board.setEndDate(rs.getString("endDate"));
+				board.setProgress(rs.getString("progress"));
+				board.setMaxPeople(rs.getInt("maxPeople"));
+
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return board;
 	}
 
 }

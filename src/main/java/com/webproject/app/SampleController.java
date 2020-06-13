@@ -67,6 +67,11 @@ public class SampleController {
 		return "soldList";
 	}
 
+	@RequestMapping(value = "myList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myList(Locale locale, Model model) {
+		return "myList";
+	}
+	
 	@RequestMapping(value = "expertRegister.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String expertRegister(Locale locale, Model model) {
 		return "expertRegister";
@@ -84,7 +89,7 @@ public class SampleController {
 
 	
 	@RequestMapping(value = "writeContentAction.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String requestupload1(Model model, MultipartHttpServletRequest mtfRequest) throws IOException {
+	public String contentUpload(Model model, MultipartHttpServletRequest mtfRequest) throws IOException {
 		HttpSession session = mtfRequest.getSession();	
 		
 		
@@ -128,7 +133,7 @@ public class SampleController {
         long fileSize = mf.getSize(); // 파일 사이즈
 
         System.out.println("originFileName : " + originFileName);
-        System.out.println("fileSize : " + fileSize);
+        
 
         mf.transferTo(new File(path+originFileName));
 
@@ -144,4 +149,69 @@ public class SampleController {
         	return "mainContent";
     }
 
+	@RequestMapping(value = "reviseContentAction.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String contentUpdate(Model model, MultipartHttpServletRequest mtfRequest) throws IOException {
+
+		
+		int boardNum = Integer.parseInt(mtfRequest.getParameter("boardNum"));
+		Board board = new Board();
+		BoardDAO boardDAO = new BoardDAO();
+	
+
+		int categoryNum = Integer.parseInt(mtfRequest.getParameter("categoryDetail"));
+        String tabone = mtfRequest.getParameter("tabone");
+        String tabtwo = mtfRequest.getParameter("tabtwo");
+        String tabthree = mtfRequest.getParameter("tabthree");
+        String tabfour = mtfRequest.getParameter("tabfour");
+        String subject = mtfRequest.getParameter("subject");
+        int price = Integer.parseInt(mtfRequest.getParameter("price"));
+        String startDate = mtfRequest.getParameter("start-period");
+        String endDate = mtfRequest.getParameter("end-period");
+        String progress = mtfRequest.getParameter("select");
+        int maxPeople = Integer.parseInt(mtfRequest.getParameter("maxPeople"));
+        
+        
+
+        board.setCategoryNum(categoryNum);
+        board.setTabone(tabone);
+        board.setTabtwo(tabtwo);
+        board.setTabthree(tabthree);
+        board.setTabfour(tabfour);
+        board.setSubject(subject);
+        board.setPrice(price);
+        board.setStartDate(startDate);
+        board.setEndDate(endDate);
+        board.setProgress(progress);
+        board.setMaxPeople(maxPeople);
+        
+        
+        MultipartFile mf = mtfRequest.getFile("uploadfile");
+
+        String path = "C:\\image\\"; // 절대경로 ( 기본경로가 없음 / 찾아봐야됨)
+
+        String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+        // boardNum 값으로 파일이름 대체하는 기능 추가
+        String FileName = null;
+        System.out.println("originFileName : " + originFileName);
+
+        
+        mf.transferTo(new File(path+originFileName));
+
+        int result = boardDAO.reviseContent(boardNum, board);
+
+        
+        if(result == -1) {
+        	model.addAttribute("msg", "잘못 입력된 사항이 있습니다. 다시 입력해주세요!");
+        	model.addAttribute("url", "writeContentAction.do");
+        	return "writeContentError";
+        }
+        else
+        	return "mainContent";
+    }
+	
+	
+	@RequestMapping(value = "reviseContent.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String reviseContent(Locale locale, Model model) {
+		return "reviseContent";
+	}
 }

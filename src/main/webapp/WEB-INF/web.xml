@@ -110,12 +110,32 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>payOK</display-name>
-    <servlet-name>payOK</servlet-name>
-    <servlet-class>com.webproject.app.Servlet.payOK</servlet-class>
+    <display-name>ReviseContent</display-name>
+    <servlet-name>ReviseContent</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.ReviseContent</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>payOK</servlet-name>
-    <url-pattern>/payOK</url-pattern>
+    <servlet-name>ReviseContent</servlet-name>
+    <url-pattern>/reviseContentAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ContentDelete</display-name>
+    <servlet-name>ContentDelete</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.ContentDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContentDelete</servlet-name>
+    <url-pattern>/ContentDelete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserWithdrawal</display-name>
+    <servlet-name>UserWithdrawal</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.UserWithdrawal</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserWithdrawal</servlet-name>
+    <url-pattern>/UserWithdrawal</url-pattern>
   </servlet-mapping>
 </web-app>

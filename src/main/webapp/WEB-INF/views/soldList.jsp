@@ -112,7 +112,7 @@
 																	<tr>
 																		<td rowspan="3" style="vertical-align: middle">#1</td>
 																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
-																		<td><a class="btn btn-primary" href="#">수정</a></td>
+																		<td><a class="btn btn-primary" href="reviseContent.do?boardNum=<%= 2%>">수정</a></td>
 																	</tr>
 																	<tr>
 																		<td>06/07~06/09</td>

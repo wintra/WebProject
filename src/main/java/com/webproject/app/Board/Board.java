@@ -1,7 +1,5 @@
 package com.webproject.app.Board;
 
-import java.util.Date;
-
 public class Board {
 	String id;
 	int categoryNum;
@@ -15,6 +13,7 @@ public class Board {
 	String endDate;
 	String progress;
 	int maxPeople;
+	float score;
 	
 	
 	public String getId() {
@@ -89,6 +88,11 @@ public class Board {
 	public void setMaxPeople(int maxPeople) {
 		this.maxPeople = maxPeople;
 	}
-	
+	public float getScore() {
+		return score;
+	}
+	public void setScore(float score) {
+		this.score = score;
+	}
 	
 }
