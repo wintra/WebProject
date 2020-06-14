@@ -92,14 +92,15 @@
 															<div class="btn-group btn-group-toggle"
 																data-toggle="buttons">
 																
-																<% if(userDAO.isExpert(userID) == 0) {%>
+																<% boolean isExpert = false;
+																if(userDAO.isExpert(userID) == 0) {%>
 																<label class="btn btn-primary active"> <input
 																	type="radio" name="options" id="option1"
 																	autocomplete="off" checked=""> 일반
 																</label> 
 																
-																<% } else if(userDAO.isExpert(userID) == 1);
-																boolean isExpert = true;{%>
+																<% } else if(userDAO.isExpert(userID) == 1){
+																isExpert = true;%>
 																<label class="btn btn-primary"> <input
 																	type="radio" name="options" id="option2"
 																	autocomplete="off"> 전문가

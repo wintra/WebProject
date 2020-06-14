@@ -192,7 +192,7 @@ input:focus, textarea:focus {
 
 
 	<%
-		int boardNum = Integer.parseInt(request.getParameter("boardNum"));
+		int boardNum = Integer.parseInt(request.getParameter("revise"));
 
 		
 		BoardDAO boardDAO = new BoardDAO();
@@ -396,7 +396,7 @@ input:focus, textarea:focus {
 																		<div class="row"></div>
 																	</div>
 																</div>
-															</div><input type="text" name="boardNum" value="<%= boardNum %>" >
+															</div><input type="hidden" name="boardNum" value="<%= boardNum %>" >
 														</div>
 														<div class="col text-center">
 															<button type="submit" class="btn btn-primary btn-block">수정하기</button>

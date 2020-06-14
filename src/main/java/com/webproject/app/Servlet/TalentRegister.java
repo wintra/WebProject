@@ -60,8 +60,8 @@ public class TalentRegister extends HttpServlet {
 		talent.setMajor(major);
 		talent.setState(state);
 		talent.setCertificate(certificate_state);
-		talent.setCertificate_date(certificate_date);
-		talent.setCertificate_state(certificate_state);
+		talent.setCertificateDate(certificate_date);
+		talent.setCertificateState(certificate_state);
 		talent.setAccountNum(accountNum);
 		talent.setBank(bank);
 

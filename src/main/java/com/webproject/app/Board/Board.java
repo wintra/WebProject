@@ -1,6 +1,7 @@
-package com.webproject.app.Board;
+	package com.webproject.app.Board;
 
 public class Board {
+	int boardNum;
 	String id;
 	int categoryNum;
 	String tabone;
@@ -15,7 +16,12 @@ public class Board {
 	int maxPeople;
 	float score;
 	
-	
+	public int getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
+	}	
 	public String getId() {
 		return id;
 	}

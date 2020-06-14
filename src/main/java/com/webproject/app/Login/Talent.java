@@ -6,11 +6,11 @@ public class Talent {
 	String technology; //보유기술
 	String profield; //전문분야
 	String education;
-	String state;
 	String major;
+	String state;
 	String certificate;
-	String certificate_date;
-	String certificate_state; //발급기관
+	String certificateDate;
+	String certificateState; //발급기관
 	int accountNum; //계좌번호
 	String bank;
 	
@@ -62,17 +62,17 @@ public class Talent {
 	public void setCertificate(String certificate) {
 		this.certificate = certificate;
 	}
-	public String getCertificate_date() {
-		return certificate_date;
+	public String getCertificateDate() {
+		return certificateDate;
 	}
-	public void setCertificate_date(String certificate_date) {
-		this.certificate_date = certificate_date;
+	public void setCertificateDate(String certificateDate) {
+		this.certificateDate = certificateDate;
 	}
-	public String getCertificate_state() {
-		return certificate_state;
+	public String getCertificateState() {
+		return certificateState;
 	}
-	public void setCertificate_state(String certificate_state) {
-		this.certificate_state = certificate_state;
+	public void setCertificateState(String certificateState) {
+		this.certificateState = certificateState;
 	}
 	public int getAccountNum() {
 		return accountNum;

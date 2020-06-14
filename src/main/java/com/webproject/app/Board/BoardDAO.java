@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import com.webproject.app.Board.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 public class BoardDAO {
 	private Connection conn;
@@ -28,7 +30,8 @@ public class BoardDAO {
 	}
 
 	public int writeContent(String id, Board board) {
-		String SQL = "insert into board (id , categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople, score) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
+		String SQL = "insert into board (id , categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople, score) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0);";
+		String lastID = "SELECT LAST_INSERT_ID();";
 
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -45,9 +48,15 @@ public class BoardDAO {
 			pstmt.setString(11, board.getProgress());
 			pstmt.setInt(12, board.getMaxPeople());
 
+			pstmt.executeUpdate();
 
+			pstmt.clearParameters();
 
-			return pstmt.executeUpdate();
+			pstmt = conn.prepareStatement(lastID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,8 +82,6 @@ public class BoardDAO {
 			pstmt.setInt(11, board.getMaxPeople());
 			pstmt.setInt(12, boardNum);
 
-			
-
 			return pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -96,22 +103,22 @@ public class BoardDAO {
 		}
 		return -1; // db오류
 	}
-	
-	
-	public Board returnBoard(int boardNum) {  
+
+	public Board returnBoard(int boardNum) {
 		Board board = new Board();
-		String SQL = "select categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople from board where boardNum ="
+		String SQL = "select id, categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople from board where boardNum ="
 				+ boardNum + ";";
 
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
+				board.setId(rs.getString("id"));
 				board.setCategoryNum(rs.getInt("categoryNum"));
 				board.setTabone(rs.getString("tabone"));
 				board.setTabtwo(rs.getString("tabtwo"));
 				board.setTabthree(rs.getString("tabthree"));
-				board.setTabfour(rs.getString("tabfour"));		
+				board.setTabfour(rs.getString("tabfour"));
 				board.setSubject(rs.getString("subject"));
 				board.setPrice(rs.getInt("price"));
 				board.setStartDate(rs.getString("startDate"));
@@ -120,7 +127,7 @@ public class BoardDAO {
 				board.setMaxPeople(rs.getInt("maxPeople"));
 
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -128,4 +135,53 @@ public class BoardDAO {
 		return board;
 	}
 
+	public String[] returnCategory(int categoryNum) {
+		String SQL = "select categoryMain, categoryDetail from category where categoryNum = " + categoryNum + ";";
+
+		String category[] = new String[2];
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				category[0] = rs.getString("categoryMain");
+				category[1] = rs.getString("categoryDetail");
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+
+		return category;
+	}
+
+	public ArrayList<Board> boardListSummary(int categoryNum) {
+		String SQL = "SELECT boardNum, subject FROM board WHERE categoryNum =" + categoryNum + ";";
+		ArrayList<Board> list = new ArrayList<Board>();
+
+		try {
+
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				Board board = new Board();
+				board.setBoardNum(rs.getInt("boardNum"));
+				board.setSubject(rs.getString("subject"));
+				
+				
+
+				list.add(board);
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
+		return list;
+
+	}
 }

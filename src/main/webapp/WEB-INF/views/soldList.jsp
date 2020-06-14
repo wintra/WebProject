@@ -37,6 +37,24 @@
 </head>
 
 <body>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$("button[name=revise]").click(function() {
+
+				$("form[name=groupMemberInfo]")
+
+				.attr({
+					action : "reviseContent.do?value=" + $(this).val(),
+					method : "post"
+				})
+
+				.submit();
+
+			});
+
+		});
+	</script>
 
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -53,7 +71,7 @@
 										<a href="#" class="list-group-item list-group-item-action"
 											id="accordion1" data-toggle="collapse"
 											data-target="#collapse1" aria-controls="collapse1"
-											aria-expanded="false">
+											aria-expanded="false"/>
 											<div class="row">
 												<div class="col-md-12 pb-3">
 													<img class="img-fluid d-block rounded-circle"
@@ -109,10 +127,11 @@
 																	</tr>
 																</thead>
 																<tbody>
-																	<tr>
+																	<tr>  
 																		<td rowspan="3" style="vertical-align: middle">#1</td>
 																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
-																		<td><a class="btn btn-primary" href="reviseContent.do?boardNum=<%= 2%>">수정</a></td>
+																		<td><form name="revise"  method="post" action="reviseContent.do"><button class="btn btn-primary" value=3>수정</button></form></td>
+
 																	</tr>
 																	<tr>
 																		<td>06/07~06/09</td>

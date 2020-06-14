@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -125,28 +126,16 @@ public class SampleController {
         
         
         MultipartFile mf = mtfRequest.getFile("uploadfile");
+        String extension = FilenameUtils.getExtension(mf.getOriginalFilename());
 
-        String path = "C:\\image\\"; // 절대경로 ( 기본경로가 없음 / 찾아봐야됨)
+        String path = "/image/"; // 절대경로 ( 기본경로가 없음 / 찾아봐야됨)
 
-        String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-        // boardNum 값으로 파일이름 대체하는 기능 추가
-        long fileSize = mf.getSize(); // 파일 사이즈
-
-        System.out.println("originFileName : " + originFileName);
+        int boardNum = boardDAO.writeContent(userID, board);  // 파일 이름 바꿔서 서버에 저장
+        System.out.println(boardNum);
         
-
-        mf.transferTo(new File(path+originFileName));
-
-        int result = boardDAO.writeContent(userID, board);
-
+        mf.transferTo(new File(path+boardNum+"."+extension));
         
-        if(result == -1) {
-        	model.addAttribute("msg", "잘못 입력된 사항이 있습니다. 다시 입력해주세요!");
-        	model.addAttribute("url", "writeContentAction.do");
-        	return "writeContentError";
-        }
-        else
-        	return "mainContent";
+        return "mainContent";
     }
 
 	@RequestMapping(value = "reviseContentAction.do", method = { RequestMethod.GET, RequestMethod.POST })
