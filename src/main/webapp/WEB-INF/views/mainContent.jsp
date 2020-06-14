@@ -114,7 +114,7 @@
 												href="content.do?boardNum=<%=list.get(col + 9 * (currentPage - 1)).getBoardNum()%>"
 												class="card" style="text-decoration: none; color: #3A3A3A;"
 												method="post"> <img class="card-img-top"
-												src="file:///c:/image/1.jpg" width="50" height="200" />
+												src="${pageContext.request.contextPath}/resources/image/test123.jpg" width="50" height="200" />
 												<div class="card-body">
 													<h4 class="card-title"><%=list.get(col + 9 * (currentPage - 1)).getBoardNum()%></h4>
 													<p class="card-text"><%=list.get(col + 9 * (currentPage - 1)).getSubject()%></p>
@@ -162,7 +162,7 @@
 											<a class="btn btn-primary center" href="writeContent.do">컨텐츠
 												등록하기</a>
 										</div>
-									</div>
+									</div><img src="${pageContext.request.contextPath}/resources/image/test123.jpg" width="50" height="200" />
 								</div>
 							</div>
 						</div>

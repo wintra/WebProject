@@ -111,7 +111,7 @@
 															<div class="col-md-12 d-flex justify-content-center">
 																<div class="card">
 																	<img class="card-img"
-																		src="https://static.pingendo.com/cover-bubble-light.svg"
+																		src="test123.jpg"
 																		alt="Card image">
 																</div>
 															</div>

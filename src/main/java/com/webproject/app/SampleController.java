@@ -128,14 +128,14 @@ public class SampleController {
         MultipartFile mf = mtfRequest.getFile("uploadfile");
         String extension = FilenameUtils.getExtension(mf.getOriginalFilename());
 
-        String path = "/image/"; // 절대경로 ( 기본경로가 없음 / 찾아봐야됨)
+        String path = "C:\\image\\"; // 절대경로 ( 기본경로가 없음 / 찾아봐야됨)
 
         int boardNum = boardDAO.writeContent(userID, board);  // 파일 이름 바꿔서 서버에 저장
         System.out.println(boardNum);
         
         mf.transferTo(new File(path+boardNum+"."+extension));
         
-        return "mainContent";
+        return "home";
     }
 
 	@RequestMapping(value = "reviseContentAction.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -179,8 +179,8 @@ public class SampleController {
         String path = "C:\\image\\"; // 절대경로 ( 기본경로가 없음 / 찾아봐야됨)
 
         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-        // boardNum 값으로 파일이름 대체하는 기능 추가
-        String FileName = null;
+
+
         System.out.println("originFileName : " + originFileName);
 
         
@@ -195,9 +195,8 @@ public class SampleController {
         	return "writeContentError";
         }
         else
-        	return "mainContent";
+        	return "home";
     }
-	
 	
 	@RequestMapping(value = "reviseContent.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String reviseContent(Locale locale, Model model) {

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
 <%@ page import="com.webproject.app.Board.*"%>
+<%@ page import="com.webproject.app.Login.*"%>
 <!DOCTYPE html>
 <html>
 
@@ -192,11 +193,14 @@ input:focus, textarea:focus {
 
 
 	<%
-		int boardNum = Integer.parseInt(request.getParameter("revise"));
+		int boardNum = Integer.parseInt((String)request.getParameter("boardNum"));
 
 		
 		BoardDAO boardDAO = new BoardDAO();
+		UserDAO userDAO = new UserDAO();
 		Board board = boardDAO.returnBoard(boardNum);
+		User user = userDAO.returnUser((String)session.getAttribute("userID"));
+		Talent talent = userDAO.returnTalent((String)session.getAttribute("userID"));
 		System.out.println(board.getStartDate());
 		System.out.println(board.getEndDate());
 	%>
@@ -376,19 +380,22 @@ input:focus, textarea:focus {
 																				<tbody>
 																					<tr>
 																						<td style="">강사명</td>
-																						<td>홍길동</td>
+																						<td><%= talent.getNickname() %></td>
 																					</tr>
 																					<tr>
 																						<td>연락처</td>
-																						<td>hong@gmil.com</td>
+																						<td><%= user.getUserEmail() %></td>
 																					</tr>
 																					<tr>
 																						<td>소개</td>
-																						<td>test</td>
+																						<td>전문분야 : <%= talent.getTechnology() %><br>
+																						       보유기술 : <%= talent.getProfield() %></td>
 																					</tr>
 																					<tr>
 																						<td>경력</td>
-																						<td>test</td>
+																						<td><%= talent.getEducation() %> <%= talent.getMajor() %> <%= talent.getState() %> <br>
+																						자격증 : <%= talent.getCertificate() %>
+																						</td>
 																					</tr>
 																				</tbody>
 																			</table>

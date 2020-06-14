@@ -128,7 +128,9 @@
 				class="list-group-item list-group-item-action accordion-list">
 				취미/라이프</a> <a href="#"
 				class="list-group-item list-group-item-action accordion-list">
-				기타</a>
+				기타</a> 
+															
+												
 		</div>
 	</ul>
 </body>

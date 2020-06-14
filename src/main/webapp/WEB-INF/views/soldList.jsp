@@ -130,7 +130,7 @@
 																	<tr>  
 																		<td rowspan="3" style="vertical-align: middle">#1</td>
 																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
-																		<td><form name="revise"  method="post" action="reviseContent.do"><button class="btn btn-primary" value=3>수정</button></form></td>
+																		<td><form  method="post" action="reviseContent.do"><button class="btn btn-primary" name ="boardNum" value=53>수정</button></form></td>
 
 																	</tr>
 																	<tr>
