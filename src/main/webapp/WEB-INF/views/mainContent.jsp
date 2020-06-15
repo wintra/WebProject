@@ -101,8 +101,8 @@
 										ArrayList<Board> list = boardDAO.boardListSummary(categoryNum);
 										 
 										 int a;
-										if(list.size() < 9)
-											a = list.size();
+										if(list.size() - 9 * currentPage < 0)
+											a = list.size() - 9 * ( currentPage-1 );
 										else
 											a = 9;
 										
@@ -122,7 +122,7 @@
 											<a
 												href="content.do?boardNum=<%=list.get(col + 9 * (currentPage - 1)).getBoardNum()%>"
 												class="card" style="text-decoration: none; color: #3A3A3A;"
-												method="post"> <img class="card-img-top"
+												> <img class="card-img-top"
 												src="${pageContext.request.contextPath}/resources/image/<%=list.get(col + 9 * (currentPage - 1)).getFileName()%>"
 												width="50" height="200" />
 												<div class="card-body">

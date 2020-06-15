@@ -195,6 +195,30 @@ public class BoardDAO {
 
 		return list;
 	}
+	
+	public ArrayList<Comment> returnCommentyBoardNum(int boardNum) {
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		String SQL = "select buyerid, comment, commentScore from comment where boardNum="
+				+ boardNum + ";";
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Comment comment = new Comment();
+				comment.setBuyerid(rs.getString("buyerid"));
+				comment.setComment(rs.getString("comment"));
+				comment.setCommentScore(rs.getInt("commentScore"));
+				
+				list.add(comment);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 
 	public String[] returnCategory(int categoryNum) {
 		String SQL = "select categoryMain, categoryDetail from category where categoryNum = " + categoryNum + ";";

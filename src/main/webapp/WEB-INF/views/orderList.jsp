@@ -146,8 +146,8 @@
 																
 
 																	int a;
-																	if (list.size() < 3)
-																		a = list.size();
+																	if (list.size() - 3 * currentPage < 0)
+																		a = list.size() - 9 * ( currentPage-1 );
 																	else
 																		a = 3;
 
@@ -169,7 +169,7 @@
 																	<tr>
 																		<td><%= board.getStartDate() %> ~ <%=board.getEndDate() %></td>
 																		<td><%= board.getPrice() %></td>
-																		<td><a class="btn btn-primary" id="modal"
+																		<td><a class="btn btn-primary" id="modal" 
 																			data-toggle="modal" data-target="#myModal">리뷰</a></td>
 																	</tr>
 																</tbody>
@@ -241,7 +241,7 @@
 								<tr>
 									<th>구매내용</th>
 									<td>
-										<p>포토샵으로 성형 해드림</p>
+										<p><%= currentPage %></p>
 									</td>
 								</tr>
 								<tr>
@@ -273,7 +273,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary">확인</button>
+					<button type="button" class="btn btn-primary" >확인</button>
 				</div>
 			</div>
 		</div>

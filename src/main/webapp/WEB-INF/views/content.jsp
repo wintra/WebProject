@@ -2,6 +2,8 @@
 	language="java"%>
 <%@ page import="com.webproject.app.Board.*"%>
 <%@ page import="com.webproject.app.Login.*"%>
+<%@ page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -68,19 +70,19 @@
 		Board board = boardDAO.returnBoard(boardNum);
 
 		int categoryNum = board.getCategoryNum();
-		
+
 		String category[] = boardDAO.returnCategory(categoryNum);
-			
-		
-		Talent talent = userDAO.returnTalent((String)board.getId());
+
+		Talent talent = userDAO.returnTalent((String) board.getId());
 		User user = userDAO.returnUser(talent.getId());
+
+		Comment comment = new Comment();
 	%>
 	<script>
-		function popup() {
-			var url = "payment.do";
-			var name = "popup test";
+		function popup_post_set() {
 			var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-			window.open(url, name, option);
+			window.open('', 'new_popup', option);
+			document.f1.submit();
 		}
 	</script>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -164,63 +166,27 @@
 																							</tr>
 																						</thead>
 																						<tbody>
-																							<tr class="">
-																								<td class="justify-content-center">남량경바보</td>
+																							<%
+																								ArrayList<Comment> list = boardDAO.returnCommentyBoardNum(boardNum);
+																								if (list.size() >= 1) {
+
+																									for (int col = 0; col < list.size(); col++) {
+																							%>
+																							<tr>
+																								<td class="justify-content-center"><%= list.get(col).getBuyerid()  %></td>
 																								<td class="">
-																									<p>안녕하세요. 제얼굴 포샵으로 아주 딴 사람으로 만들어 놓으셨습니다. 이
-																										집 포샵 맛집입니다. 모두들 이곳에서 성형하세요.</p>
+																									<p><%=list.get(col).getComment()  %></p>
 																								</td>
-																								<td>5</td>
+																								<td><%=list.get(col).getCommentScore()  %></td>
 																							</tr>
-																							<tr>
-																								<td>정현정</td>
-																								<td>의느님보다 더 귀하신분이 존재하셨다니. 감사합니다..저는 원래 점수를
-																									짜게주는 사람이라..</td>
-																								<td>4</td>
-																							</tr>
-																							<tr>
-																								<td>Three</td>
-																								<td></td>
-																								<td><i class="fa fa-check fa-lg text-muted"></i>
-																								</td>
-																							</tr>
-																							<tr>
-																								<td>Four</td>
-																								<td></td>
-																								<td><i class="fa fa-check fa-lg text-muted"></i>
-																								</td>
-																							</tr>
-																							<tr>
-																								<td>Five</td>
-																								<td></td>
-																								<td></td>
-																							</tr>
-																							<tr>
-																								<td>Six</td>
-																								<td></td>
-																								<td></td>
-																							</tr>
+																							<%
+																								}
+																								}
+																							%>
+
+
 																						</tbody>
 																					</table>
-																				</div>
-																			</div>
-																			<div class="row">
-																				<div class="col-md-12">
-																					<ul class="pagination"
-																						style="justify-content: center;">
-																						<li class="page-item"><a class="page-link"
-																							href="#">Prev</a></li>
-																						<li class="page-item"><a class="page-link"
-																							href="#">1</a></li>
-																						<li class="page-item"><a class="page-link"
-																							href="#">2</a></li>
-																						<li class="page-item active"><a
-																							class="page-link" href="#">3</a></li>
-																						<li class="page-item"><a class="page-link"
-																							href="#">4</a></li>
-																						<li class="page-item"><a class="page-link"
-																							href="#">Next</a></li>
-																					</ul>
 																				</div>
 																			</div>
 																		</div>
@@ -253,8 +219,8 @@
 																					<tr>
 																						<td class="border-right border-primary">기간</td>
 																						<td
-																							class="border-left border-bottom border-primary"><b>시작</b><br><%= board.getStartDate() %> 
-																							<br><b>종료</b><br><%= board.getEndDate() %></td>
+																							class="border-left border-bottom border-primary"><b>시작</b><br><%=board.getStartDate()%>
+																							<br> <b>종료</b><br><%=board.getEndDate()%></td>
 																					</tr>
 																					<tr>
 																						<td class="border-right border-primary">진행 방법</td>
@@ -267,8 +233,13 @@
 																				</tbody>
 																			</table>
 																		</div>
-																		<a class="btn btn-primary btn-block"
-																			href="javascript:popup()">구매하기</a>
+
+																		<form onclick="return popup_post_set()" method="post"
+																			name="f1" action="payment.do" target="new_popup">
+																			<button class="btn btn-primary btn-block"
+																				name="boardNum" value="<%=boardNum%>">구매하기</button>
+																		</form>
+
 																	</div>
 																</div>
 															</div>
@@ -302,21 +273,21 @@
 																				<tbody>
 																					<tr>
 																						<td>강사명</td>
-																						<td><%= talent.getNickname() %></td>
+																						<td><%=talent.getNickname()%></td>
 																					</tr>
 																					<tr>
 																						<td>이메일</td>
-																						<td><%= user.getUserEmail() %> </td>
+																						<td><%=user.getUserEmail()%></td>
 																					</tr>
 																					<tr>
 																						<td>소개</td>
-																						<td>전문분야 : <%= talent.getTechnology() %><br>
-																						       보유기술 : <%= talent.getProfield() %></td>
+																						<td>전문분야 : <%=talent.getTechnology()%><br>
+																							보유기술 : <%=talent.getProfield()%></td>
 																					</tr>
 																					<tr>
 																						<td>경력</td>
-																						<td><%= talent.getEducation() %> <%= talent.getMajor() %> <%= talent.getState() %> <br>
-																						자격증 : <%= talent.getCertificate() %>
+																						<td><%=talent.getEducation()%> <%=talent.getMajor()%>
+																							<%=talent.getState()%> <br> 자격증 : <%=talent.getCertificate()%>
 																						</td>
 																					</tr>
 																				</tbody>

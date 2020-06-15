@@ -207,5 +207,11 @@ public class SampleController {
 	public String reviseExpert(Locale locale, Model model) {
 		return "reviseExpert";
 	}
+	
+	@RequestMapping(value = "review.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String review(Locale locale, Model model) {
+		return "review";
+	}
+
 
 }

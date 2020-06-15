@@ -58,6 +58,18 @@
 
 		});
 	</script>
+	<script type="text/javascript">
+		function button_event() {
+			if (confirm("정말 삭제하시겠습니까??") == true) { //확인
+				document.form.submit();
+			} else { //취소
+				return;
+			}
+		}
+	</script>
+
+
+	출처: https://h5bak.tistory.com/134 [이준빈은 호박머리]
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<%
@@ -148,8 +160,8 @@
 																	ArrayList<Board> list = boardDAO.returnBoardbyID(userID);
 
 																	int a;
-																	if (list.size() < 3)
-																		a = list.size();
+																	if (list.size() - 3 * currentPage < 0)
+																		a = list.size() - 3 * (currentPage - 1);
 																	else
 																		a = 3;
 
@@ -166,17 +178,20 @@
 																				<button class="btn btn-primary" name="boardNum"
 																					value=<%=list.get(col + 3 * (currentPage - 1)).getBoardNum()%>>수정</button>
 																			</form></td>
-																			
-	<% System.out.println(list.get(col + 3 * (currentPage - 1)).getBoardNum()); %>
+
+																		<%
+																			System.out.println(list.get(col + 3 * (currentPage - 1)).getBoardNum());
+																		%>
 																	</tr>
 																	<tr>
 																		<td><%=list.get(col + 3 * (currentPage - 1)).getStartDate()%>~<%=list.get(col + 3 * (currentPage - 1)).getEndDate()%></td>
 																		<td>3/<%=list.get(col + 3 * (currentPage - 1)).getMaxPeople()%>명
 																		</td>
-																		<td><form method="post"
+																		<td><form method="post" name="form"
 																				action="contentDeleteAction">
 																				<button class="btn btn-danger" name="boardNum"
-																					value=1>삭제</button>
+																					onclick="button_event();"
+																					value=<%=list.get(col + 3 * (currentPage - 1)).getBoardNum()%>>삭제</button>
 																			</form></td>
 																	</tr>
 																</tbody>
