@@ -54,7 +54,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 order-md-1">
-          <form class="needs-validation" action="talentRegisterAction"  method = "post">
+          <form class="needs-validation" action="talentUpdateAction" method = "post">
             <div class="row">
               <div class="col-md-12 mb-3"> <label for="firstName" class="text-body" contenteditable="true">전문가 닉네임<br></label>
                 <input type="text" class="form-control w-75 px-3" name="nickName" placeholder="닉네임을 입력해주세요." value="" style="">

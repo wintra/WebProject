@@ -33,7 +33,7 @@ public class UserUpdate extends HttpServlet {
 		String userPassword = request.getParameter("userPassword");
 		String userName = request.getParameter("userName");
 		String userEmail = request.getParameter("userEmail");
-		int userPhoneNum = Integer.parseInt(request.getParameter("userPhoneNum"));
+		String userPhoneNum = request.getParameter("userPhoneNum");
 		String userGender = request.getParameter("userGender");
 		
 		

@@ -105,7 +105,7 @@ b, strong {
 								role="button" aria-haspopup="true" aria-expanded="false">디자인</a>
 								<div class="dropdown-menu" x-placement="bottom-start"
 									style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
-									<a class="dropdown-item" href="mainContent.do?categoryNum=101&pg=1">포토샵<br></a><a
+									<a class="dropdown-item" href="mainContent.do?categoryNum=200&pg=1">포토샵<br></a><a
 										class="dropdown-item" href="#">일러스트레이터</a><a
 										class="dropdown-item" href="#">제품디자인</a><a
 										class="dropdown-item" href="#">건축</a><a class="dropdown-item"

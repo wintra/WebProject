@@ -55,9 +55,7 @@ public class UserServlet extends HttpServlet {
 			HttpSession session=request.getSession();
 			String userID = (String) session.getAttribute("userID");
 			String query = "select * from user where id = \"" + userID + "\"";
-			
-			System.out.println(query);
-		
+	
 			String url = "jdbc:mariadb://127.0.0.1:3306/webproject?useSSL=false";
 			
 			conn = DriverManager.getConnection(url, "root", "test"); // DB 로그인 정보로 연동
@@ -86,11 +84,6 @@ public class UserServlet extends HttpServlet {
 				
 			}
 
-		    System.out.println(session.getAttribute("userName"));
-		    System.out.println(session.getAttribute("userEmail"));
-		    System.out.println(session.getAttribute("userPhoneNum"));
-		    System.out.println(session.getAttribute("userGender"));
-		    
 		    
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());

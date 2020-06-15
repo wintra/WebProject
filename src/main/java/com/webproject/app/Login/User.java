@@ -6,7 +6,7 @@ public class User {
 	private String userName;
 	private String userEmail;
 	private String userGender;
-	private int userPhoneNum; 
+	private String userPhoneNum; 
 
 	
 	public String getUserID() {
@@ -39,10 +39,10 @@ public class User {
 	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
-	public int getUserPhoneNum() {
+	public String getUserPhoneNum() {
 		return userPhoneNum;
 	}
-	public void setUserPhoneNum(int phoneNum) {
+	public void setUserPhoneNum(String phoneNum) {
 		this.userPhoneNum = phoneNum;
 	}
 }

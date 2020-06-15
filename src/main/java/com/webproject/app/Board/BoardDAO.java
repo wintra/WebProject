@@ -1,12 +1,12 @@
 package com.webproject.app.Board;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 
 public class BoardDAO {
 	private Connection conn;
@@ -64,8 +64,23 @@ public class BoardDAO {
 		return -1; // db오류
 	}
 
+	public int setFileName(int boardNum, String extension) {
+		String SQL = "update board set fileName = ? where boardNum=?";
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, boardNum + "." + extension);
+			pstmt.setInt(2, boardNum);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // db오류
+	}
+
 	public int reviseContent(int boardNum, Board board) {
-		String SQL = "update board set categoryNum =? ,tabone =? , tabtwo =? , tabthree =? , tabfour =? , subject =? , price =? , startDate =? , endDate =? , progress =? , maxPeople =? where boardNum=?";
+		String SQL = "update board set categoryNum =? ,tabone =? , tabtwo =? , tabthree =? , tabfour =? , subject =? , price =? , startDate =? , endDate =? , progress =? , maxPeople =? where boardNum=? ";
 
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -91,12 +106,30 @@ public class BoardDAO {
 	}
 
 	public int deleteContent(int boardNum) {
-		String SQL = "delte from board where boardNum=?";
-
+		String SQL = "delete from board where boardNum=?";
+		String path = "D:\\eclipse\\WebProject\\src\\main\\webapp\\resources\\image\\";
+		Board board = returnBoard(boardNum);
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, boardNum);
-			return pstmt.executeUpdate();
+
+			pstmt.executeUpdate();
+			
+			
+			
+			File file = new File(path + board.getFileName());
+
+			if (file.exists()) {
+				if (file.delete()) {
+					System.out.println("파일삭제 성공");
+				} else {
+					System.out.println("파일삭제 실패");
+				}
+			} else {
+				System.out.println("파일이 존재하지 않습니다.");
+			}
+			
+			return 1;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,7 +139,8 @@ public class BoardDAO {
 
 	public Board returnBoard(int boardNum) {
 		Board board = new Board();
-		String SQL = "select id, categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople from board where boardNum ="
+		
+		String SQL = "select id, categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople, fileName from board where boardNum ="
 				+ boardNum + ";";
 
 		try {
@@ -125,6 +159,7 @@ public class BoardDAO {
 				board.setEndDate(rs.getString("endDate"));
 				board.setProgress(rs.getString("progress"));
 				board.setMaxPeople(rs.getInt("maxPeople"));
+				board.setFileName(rs.getString("fileName"));
 
 			}
 
@@ -133,6 +168,32 @@ public class BoardDAO {
 		}
 
 		return board;
+	}
+	
+	public ArrayList<Board> returnBoardbyID(String userID) {
+		ArrayList<Board> list = new ArrayList<Board>();
+		String SQL = "select boardNum, subject, startDate, endDate, maxPeople from board where id =\""
+				+ userID + "\";";
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Board board = new Board();
+				board.setBoardNum(rs.getInt("boardNum"));
+				board.setSubject(rs.getString("subject"));
+				board.setStartDate(rs.getString("startDate"));
+				board.setEndDate(rs.getString("endDate"));
+				board.setMaxPeople(rs.getInt("maxPeople"));
+				
+				list.add(board);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 	public String[] returnCategory(int categoryNum) {
@@ -147,7 +208,7 @@ public class BoardDAO {
 				category[1] = rs.getString("categoryDetail");
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 
@@ -155,7 +216,7 @@ public class BoardDAO {
 	}
 
 	public ArrayList<Board> boardListSummary(int categoryNum) {
-		String SQL = "SELECT boardNum, subject FROM board WHERE categoryNum =" + categoryNum + ";";
+		String SQL = "SELECT boardNum, subject, fileName FROM board WHERE categoryNum =" + categoryNum + ";";
 		ArrayList<Board> list = new ArrayList<Board>();
 
 		try {
@@ -168,8 +229,7 @@ public class BoardDAO {
 				Board board = new Board();
 				board.setBoardNum(rs.getInt("boardNum"));
 				board.setSubject(rs.getString("subject"));
-				
-				
+				board.setFileName(rs.getString("fileName"));
 
 				list.add(board);
 
@@ -183,5 +243,27 @@ public class BoardDAO {
 
 		return list;
 
+	}
+
+	public int[] popularityCategory() {
+
+		String SQL1 = "SELECT CATEGORYNUM FROM board GROUP BY categoryNum ORDER BY COUNT(categoryNum) DESC LIMIT 3;";// SELECT
+																														// categoryNum
+																														// FROM
+																														// category;
+		int top3[] = { 0, 0, 0 };
+		try {
+			int i = 0;
+			pstmt = conn.prepareStatement(SQL1);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				top3[i++] = rs.getInt("categoryNum");
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return top3;
 	}
 }

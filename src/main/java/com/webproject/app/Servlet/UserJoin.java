@@ -36,7 +36,7 @@ public class UserJoin extends HttpServlet {
 		String userPassword = request.getParameter("userPassword");
 		String userName = request.getParameter("userName");
 		String userEmail = request.getParameter("userEmail");
-		int userPhoneNum = Integer.parseInt(request.getParameter("userPhoneNum"));
+		String userPhoneNum = request.getParameter("userPhoneNum");
 		String userGender = request.getParameter("userGender");
 		
 		User user = new User();
@@ -48,7 +48,7 @@ public class UserJoin extends HttpServlet {
 		user.setUserGender(userGender);
 		
 
-		if (userID == null || userPassword == null || userName == null || userEmail == null || userPhoneNum == 0) {
+		if (userID == null || userPassword == null || userName == null || userEmail == null || userPhoneNum == null) {
 			out.println("<script>");
 			out.println("alert('입력이 안 된 사항이 있습니다.')");
 			out.println("history.back()");

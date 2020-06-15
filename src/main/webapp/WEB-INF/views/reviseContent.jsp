@@ -193,7 +193,7 @@ input:focus, textarea:focus {
 
 
 	<%
-		int boardNum = Integer.parseInt((String)request.getParameter("boardNum"));
+		int boardNum = Integer.parseInt(request.getParameter("boardNum"));
 
 		
 		BoardDAO boardDAO = new BoardDAO();
@@ -201,8 +201,6 @@ input:focus, textarea:focus {
 		Board board = boardDAO.returnBoard(boardNum);
 		User user = userDAO.returnUser((String)session.getAttribute("userID"));
 		Talent talent = userDAO.returnTalent((String)session.getAttribute("userID"));
-		System.out.println(board.getStartDate());
-		System.out.println(board.getEndDate());
 	%>
 	
 	<jsp:include page="header.jsp"></jsp:include>
@@ -249,6 +247,7 @@ input:focus, textarea:focus {
 														</div>
 														<div class="row">
 															<div class="col-md-12 mt-3">
+															
 																<label for="file">썸네일로 사용할 사진을 올려주세요
 																권장크기(700x400)</label> <br>
 
@@ -321,9 +320,9 @@ input:focus, textarea:focus {
 																						<td class="border-right border-primary">기간</td>
 																						<td
 																							class="border-left border-bottom border-primary">
-																							<b>시작</b><% System.out.println(board.getStartDate()); %>
+																							<b>시작</b>
 																							<input type="date" name="start-period" size="20" style="width: 100%; border: 0;" value="<%=board.getStartDate()%>"> 
-																							<b>종료</b><% System.out.println(board.getEndDate()); %>
+																							<b>종료</b>
 																							<input type="date" name="end-period" size="20" style="width: 100%; border: 0;" value="<%= board.getEndDate()%>"></td>
 																					</tr>
 																					<tr>
@@ -331,8 +330,8 @@ input:focus, textarea:focus {
 																						<td class="border-left border-primary"><select
 																							id="select" name="select"
 																							style="width: 100px; height: 20px; border-style: none;">
-																								<option value="offline" <% if (board.getProgress().equals("오프라인")) {%> selected <%} %>>오프라인</option>
-																								<option value="online" <%  if(board.getProgress().equals("온라인")) {%> selected <% } %>>온라인</option>
+																								<option value="오프라인" <% if (board.getProgress().equals("오프라인")) {%> selected <%} %>>오프라인</option>
+																								<option value="온라인" <%  if(board.getProgress().equals("온라인")) {%> selected <% } %>>온라인</option>
 																						</select></td>
 																					</tr>
 																					<tr>

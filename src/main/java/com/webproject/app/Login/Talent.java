@@ -11,7 +11,7 @@ public class Talent {
 	String certificate;
 	String certificateDate;
 	String certificateState; //발급기관
-	int accountNum; //계좌번호
+	String accountNum; //계좌번호
 	String bank;
 	
 	public String getTechnology() {
@@ -74,10 +74,10 @@ public class Talent {
 	public void setCertificateState(String certificateState) {
 		this.certificateState = certificateState;
 	}
-	public int getAccountNum() {
+	public String getAccountNum() {
 		return accountNum;
 	}
-	public void setAccountNum(int accountNum) {
+	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
 	}
 	public String getBank() {

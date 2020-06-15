@@ -15,6 +15,8 @@ public class Board {
 	String progress;
 	int maxPeople;
 	float score;
+	String fileName;
+	
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -100,5 +102,10 @@ public class Board {
 	public void setScore(float score) {
 		this.score = score;
 	}
-	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 }

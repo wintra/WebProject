@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
+	<%@ page import="com.webproject.app.Login.*" %>
 <!DOCTYPE html>
 <html>
 
@@ -197,6 +198,11 @@ input:focus, textarea:focus {
 	</script>
 
 	<jsp:include page="header.jsp"></jsp:include>
+	<%
+	UserDAO userDAO = new UserDAO();
+	User user = userDAO.returnUser((String)session.getAttribute("userID"));
+	Talent talent = userDAO.returnTalent((String)session.getAttribute("userID"));
+	%>
 	<header class="Nav">
 		<nav id="NavBar"></nav>
 	</header>
@@ -323,8 +329,8 @@ input:focus, textarea:focus {
 																						<td class="border-left border-primary"><select
 																							id="select" name="select"
 																							style="width: 100px; height: 20px; border-style: none;">
-																								<option value="offline">오프라인</option>
-																								<option value="online">온라인</option>
+																								<option value="오프라인">오프라인</option>
+																								<option value="온라인">온라인</option>
 																						</select></td>
 																					</tr>
 																					<tr>
@@ -372,19 +378,22 @@ input:focus, textarea:focus {
 																				<tbody>
 																					<tr>
 																						<td style="">강사명</td>
-																						<td>홍길동</td>
+																						<td><%= talent.getNickname() %></td>
 																					</tr>
 																					<tr>
 																						<td>연락처</td>
-																						<td>hong@gmil.com</td>
+																						<td><%= user.getUserEmail() %></td>
 																					</tr>
 																					<tr>
 																						<td>소개</td>
-																						<td>test</td>
+																						<td>전문분야 : <%= talent.getTechnology() %><br>
+																						       보유기술 : <%= talent.getProfield() %></td>
 																					</tr>
 																					<tr>
 																						<td>경력</td>
-																						<td>test</td>
+																						<td><%= talent.getEducation() %> <%= talent.getMajor() %> <%= talent.getState() %> <br>
+																						자격증 : <%= talent.getCertificate() %>
+																						</td>
 																					</tr>
 																				</tbody>
 																			</table>

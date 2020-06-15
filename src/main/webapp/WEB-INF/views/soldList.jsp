@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.webproject.app.Login.*"%>
+<%@ page import="com.webproject.app.Board.*"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 
@@ -57,7 +60,18 @@
 	</script>
 
 	<jsp:include page="header.jsp"></jsp:include>
+	<%
+		UserDAO userDAO = new UserDAO();
+		String userID = (String) session.getAttribute("userID");
+		User user = userDAO.returnUser(userID);
 
+		BoardDAO boardDAO = new BoardDAO();
+
+		int currentPage = Integer.parseInt(request.getParameter("pg"));
+
+		if (currentPage < 1)
+			currentPage = 1;
+	%>
 
 	<div class="p-0">
 		<div class="container">
@@ -71,38 +85,41 @@
 										<a href="#" class="list-group-item list-group-item-action"
 											id="accordion1" data-toggle="collapse"
 											data-target="#collapse1" aria-controls="collapse1"
-											aria-expanded="false"/>
-											<div class="row">
-												<div class="col-md-12 pb-3">
-													<img class="img-fluid d-block rounded-circle"
-														src="https://static.pingendo.com/img-placeholder-3.svg"
-														alt="profile">
-												</div>
+											aria-expanded="false" />
+										<div class="row">
+											<div class="col-md-12 pb-3">
+												<img class="img-fluid d-block rounded-circle"
+													src="https://static.pingendo.com/img-placeholder-3.svg"
+													alt="profile">
 											</div>
-											<div class="row">
-												<div class="col-md-12 justify-content-center">
-													<h3 class="justify-content-center d-flex mt-2 mb-0 pb-2">
-														<b>test</b>
-													</h3>
-													<div class="row">
-														<div
-															class="col-md-12 d-inline-flex justify-content-center">
-															<div class="btn-group btn-group-toggle"
-																data-toggle="buttons">
-																<label class="btn btn-primary"> <input
-																	type="radio" name="options" id="option2"
-																	autocomplete="off" checked=""> 전문가
-																</label>
-															</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12 justify-content-center">
+												<h3 class="justify-content-center d-flex mt-2 mb-0 pb-2">
+													<b><%=user.getUserName()%></b>
+												</h3>
+												<div class="row">
+													<div class="col-md-12 d-inline-flex justify-content-center">
+														<div class="btn-group btn-group-toggle"
+															data-toggle="buttons">
+															<label class="btn btn-primary"> <input
+																type="radio" name="options" id="option2"
+																autocomplete="off" checked=""> 전문가
+															</label>
 														</div>
 													</div>
 												</div>
 											</div>
+										</div>
 										</a>
-										<a href="orderList.do"
+										<a href="orderList.do?pg=1"
 											class="list-group-item list-group-item-action">구매내역</a>
-										<a href="soldList.do"
+										<a href="soldList.do?pg=1"
 											class="list-group-item list-group-item-action">판매내역</a>
+										<a href="reviseExpert.do"
+											class="list-group-item list-group-item-action">전문가 정보 수정</a>
+										<a href="withdrawUser.do"
+											class="list-group-item list-group-item-action">회원 탈퇴</a>
 									</ul>
 								</div>
 								<div class="col-md-8" style="">
@@ -126,43 +143,47 @@
 																		<th>문의</th>
 																	</tr>
 																</thead>
-																<tbody>
-																	<tr>  
-																		<td rowspan="3" style="vertical-align: middle">#1</td>
-																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
-																		<td><form  method="post" action="reviseContent.do"><button class="btn btn-primary" name ="boardNum" value=53>수정</button></form></td>
 
-																	</tr>
-																	<tr>
-																		<td>06/07~06/09</td>
-																		<td>3/5명</td>
-																		<td><a class="btn btn-danger" href="#">삭제</a></td>
-																	</tr>
-																</tbody>
+																<%
+																	ArrayList<Board> list = boardDAO.returnBoardbyID(userID);
+
+																	int a;
+																	if (list.size() < 3)
+																		a = list.size();
+																	else
+																		a = 3;
+
+																	if (list.size() >= 1) {
+
+																		for (int col = 0; col < a; col++) {
+																%>
+
 																<tbody>
 																	<tr>
 																		<td rowspan="3" style="vertical-align: middle">#1</td>
-																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
-																		<td><a class="btn btn-primary" href="#">수정</a></td>
+																		<td colspan="2"><a href="#"><%=list.get(col + 3 * (currentPage - 1)).getSubject()%></a></td>
+																		<td><form method="post" action="reviseContent.do">
+																				<button class="btn btn-primary" name="boardNum"
+																					value=<%=list.get(col + 3 * (currentPage - 1)).getBoardNum()%>>수정</button>
+																			</form></td>
+																			
+	<% System.out.println(list.get(col + 3 * (currentPage - 1)).getBoardNum()); %>
 																	</tr>
 																	<tr>
-																		<td>06/07~06/09</td>
-																		<td>3/5명</td>
-																		<td><a class="btn btn-danger" href="#">삭제</a></td>
+																		<td><%=list.get(col + 3 * (currentPage - 1)).getStartDate()%>~<%=list.get(col + 3 * (currentPage - 1)).getEndDate()%></td>
+																		<td>3/<%=list.get(col + 3 * (currentPage - 1)).getMaxPeople()%>명
+																		</td>
+																		<td><form method="post"
+																				action="contentDeleteAction">
+																				<button class="btn btn-danger" name="boardNum"
+																					value=1>삭제</button>
+																			</form></td>
 																	</tr>
 																</tbody>
-																<tbody>
-																	<tr>
-																		<td rowspan="3" style="vertical-align: middle">#1</td>
-																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
-																		<td><a class="btn btn-primary" href="#">수정</a></td>
-																	</tr>
-																	<tr>
-																		<td>06/07~06/09</td>
-																		<td>3/5명</td>
-																		<td><a class="btn btn-danger" href="#">삭제</a></td>
-																	</tr>
-																</tbody>
+																<%
+																	}
+																	}
+																%>
 															</table>
 														</li>
 													</ul>
@@ -171,18 +192,18 @@
 													<div
 														class="col-md-12 justify-content-center d-flex mt-2 pt-2">
 														<ul class="pagination">
-															<li class="page-item"><a class="page-link" href="#">Prev</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">1</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">2</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">3</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">4</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">Next</a>
-															</li>
+															<li class="page-item"><a class="page-link"
+																href="soldList.do?pg=<%=currentPage - 1%>">Prev</a></li>
+															<li class="page-item"><a class="page-link"
+																href="soldList.do?pg=1">1</a></li>
+															<li class="page-item"><a class="page-link"
+																href="soldList.do?pg=2">2</a></li>
+															<li class="page-item"><a class="page-link"
+																href="soldList.do?pg=3">3</a></li>
+															<li class="page-item"><a class="page-link"
+																href="soldList.do?pg=4">4</a></li>
+															<li class="page-item"><a class="page-link"
+																href="soldList.do?pg=<%=currentPage + 1%>">Next</a></li>
 														</ul>
 
 													</div>

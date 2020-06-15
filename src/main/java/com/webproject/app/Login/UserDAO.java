@@ -74,7 +74,7 @@ public class UserDAO {
 				pstmt.setString(2, user.getUserPassword());
 				pstmt.setString(3, user.getUserName());
 				pstmt.setString(4, user.getUserEmail());
-				pstmt.setInt(5, user.getUserPhoneNum());
+				pstmt.setString(5, user.getUserPhoneNum());
 				pstmt.setString(6, user.getUserGender());
 
 				return pstmt.executeUpdate();
@@ -95,7 +95,7 @@ public class UserDAO {
 			pstmt.setString(1, user.getUserPassword());
 			pstmt.setString(2, user.getUserName());
 			pstmt.setString(3, user.getUserEmail());
-			pstmt.setInt(4, user.getUserPhoneNum());
+			pstmt.setString(4, user.getUserPhoneNum());
 			pstmt.setString(5, user.getUserGender());
 			pstmt.setString(6, user.getUserID());
 			return pstmt.executeUpdate();
@@ -122,24 +122,25 @@ public class UserDAO {
 	}
 
 	public int updateExpert(Talent talent) {
-		String SQL = "update user set nickname = ? ,profield = ? , education = ?,state = ? , major = ?, certificate = ?,certificate_date = ?,certificate_state = ?,accountNum = ?,bank = ?,technology=? where id = ?";
+		String SQL = "update talent set nickname= ? , technology = ?, profield = ? , education = ?, major = ?, state = ? ,  certificate = ?,certificate_date = ?,certificate_state = ?,accountNum = ?,bank = ? where id = ?";
 
 		try {
 
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, talent.getId());
-			pstmt.setString(2, talent.getNickname());
+			
+			pstmt.setString(1, talent.getNickname());
+			pstmt.setString(2, talent.getTechnology());
 			pstmt.setString(3, talent.getProfield());
-			pstmt.setString(4, talent.getTechnology()); // 보유기술
-			pstmt.setString(5, talent.getEducation());
+			pstmt.setString(4, talent.getEducation());
+			pstmt.setString(5, talent.getMajor());
 			pstmt.setString(6, talent.getState());
-			pstmt.setString(7, talent.getMajor());
-			pstmt.setString(8, talent.getCertificate());
-			pstmt.setString(9, talent.getCertificateDate());
-			pstmt.setString(10, talent.getCertificateState());
-			pstmt.setInt(11, talent.getAccountNum());
-			pstmt.setString(12, talent.getBank());
-
+			pstmt.setString(7, talent.getCertificate());
+			pstmt.setString(8, talent.getCertificateDate());
+			pstmt.setString(9, talent.getCertificateState());
+			pstmt.setString(10, talent.getAccountNum());
+			pstmt.setString(11, talent.getBank());
+			pstmt.setString(12, talent.getId());
+			
 			return pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -162,7 +163,7 @@ public class UserDAO {
 			pstmt.setString(8, talent.getCertificate());
 			pstmt.setString(9, talent.getCertificateDate());
 			pstmt.setString(10, talent.getCertificateState());
-			pstmt.setInt(11, talent.getAccountNum());
+			pstmt.setString(11, talent.getAccountNum());
 			pstmt.setString(12, talent.getBank());
 
 			return pstmt.executeUpdate();
@@ -210,7 +211,7 @@ public class UserDAO {
 				user.setUserPassword(rs.getString("pw"));
 				user.setUserName(rs.getString("name"));
 				user.setUserEmail(rs.getString("email"));
-				user.setUserPhoneNum(rs.getInt("phone"));
+				user.setUserPhoneNum(rs.getString("phone"));
 				user.setUserGender(rs.getString("gender"));
 			}
 
@@ -240,7 +241,7 @@ public class UserDAO {
 				talent.setCertificate(rs.getString("certificate"));
 				talent.setCertificateDate(rs.getString("certificate_date"));
 				talent.setCertificateState(rs.getString("certificate_state"));
-				talent.setAccountNum(rs.getInt("accountNum"));
+				talent.setAccountNum(rs.getString("accountNum"));
 				talent.setBank(rs.getString("bank"));
 
 			}

@@ -126,7 +126,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ContentDelete</servlet-name>
-    <url-pattern>/ContentDelete</url-pattern>
+    <url-pattern>/contentDeleteAction</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -137,5 +137,15 @@
   <servlet-mapping>
     <servlet-name>UserWithdrawal</servlet-name>
     <url-pattern>/UserWithdrawal</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TalentUpdate</display-name>
+    <servlet-name>TalentUpdate</servlet-name>
+    <servlet-class>com.webproject.app.Servlet.TalentUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TalentUpdate</servlet-name>
+    <url-pattern>/talentUpdateAction</url-pattern>
   </servlet-mapping>
 </web-app>

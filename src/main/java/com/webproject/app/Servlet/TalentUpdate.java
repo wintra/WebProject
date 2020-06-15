@@ -3,36 +3,35 @@ package com.webproject.app.Servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.webproject.app.Login.*;
+import com.webproject.app.Login.Talent;
+import com.webproject.app.Login.UserDAO;
 
 /**
- * Servlet implementation class TalentRegister
+ * Servlet implementation class TalentUpdate
  */
-public class TalentRegister extends HttpServlet {
+@WebServlet("/TalentUpdate")
+public class TalentUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TalentUpdate() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public TalentRegister() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();	
 		
@@ -50,8 +49,6 @@ public class TalentRegister extends HttpServlet {
 		String accountNum = request.getParameter("accountNum");
 		String bank = request.getParameter("bank");
 
-		
-		
 		Talent talent = new Talent();
 		talent.setId(userID);
 		talent.setNickname(nickName);
@@ -77,12 +74,12 @@ public class TalentRegister extends HttpServlet {
 
 		} else {
 			UserDAO userDAO = new UserDAO(); // 인스턴스생성
-			int result = userDAO.expertRegister(talent);
+			int result = userDAO.updateExpert(talent);
 
 			if (result == -1) { //
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('이미 전문가 계정입니다.')");
+				script.println("alert('오류로 인해 수정이 취소되었습니다.')");
 				script.println("history.back()");
 				script.println("</script>");
 			}
@@ -90,23 +87,20 @@ public class TalentRegister extends HttpServlet {
 			else {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("alert('전문가 등록이 되었습니다')");
-				response.addHeader("REFRESH"," 0; URL=home.do");
+				script.println("alert('전문가 수정이 되었습니다')");
+				response.addHeader("REFRESH"," 0; URL=mypage.do");
 				script.println("</script>");
 			}
 		}
-
-		
-
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		doGet(request, response);
 	}
 

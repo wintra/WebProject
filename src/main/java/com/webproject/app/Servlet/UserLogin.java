@@ -39,19 +39,10 @@ public class UserLogin extends HttpServlet {
 		String userID = request.getParameter("userID");
 		String userPW = request.getParameter("userPassword");
 		PrintWriter out = response.getWriter();
-		
-		System.out.println(userID + userPW);
-		if(userID != null){
-			out.println("<script>");
-			out.println("alert('이미로그인이 되어있습니다.');");
-			out.println("history.back()");
-			out.println("</script>");
-		}
-		
+			
+	
 		UserDAO userDAO = new UserDAO();
-		
-		
-		
+
 		int result= userDAO.login(userID, userPW);
 		
 

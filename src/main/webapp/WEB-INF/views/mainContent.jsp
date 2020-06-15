@@ -96,13 +96,22 @@
 												<%=category[1]%></h5>
 										</div>
 									</div>
+									<div>
 									<%
 										ArrayList<Board> list = boardDAO.boardListSummary(categoryNum);
-
-										for (int col = 0; col < 9; col++) {
-									%>
-									<%
-										if (col == 0 || col == 3 || col == 6) {
+										 
+										 int a;
+										if(list.size() < 9)
+											a = list.size();
+										else
+											a = 9;
+										
+										
+										if (list.size() >= 1) {
+											
+											for (int col = 0; col < a; col++) {
+								
+												if (col == 0 || col == 3 || col == 6) {
 									%>
 
 									<div class="row">
@@ -114,7 +123,8 @@
 												href="content.do?boardNum=<%=list.get(col + 9 * (currentPage - 1)).getBoardNum()%>"
 												class="card" style="text-decoration: none; color: #3A3A3A;"
 												method="post"> <img class="card-img-top"
-												src="${pageContext.request.contextPath}/resources/image/test123.jpg" width="50" height="200" />
+												src="${pageContext.request.contextPath}/resources/image/<%=list.get(col + 9 * (currentPage - 1)).getFileName()%>"
+												width="50" height="200" />
 												<div class="card-body">
 													<h4 class="card-title"><%=list.get(col + 9 * (currentPage - 1)).getBoardNum()%></h4>
 													<p class="card-text"><%=list.get(col + 9 * (currentPage - 1)).getSubject()%></p>
@@ -122,13 +132,15 @@
 											</a>
 										</div>
 										<%
-											if (col == 2 || col == 5 || col == 8) {
+												if (col == 2 || col == 5 || col == 8) {
 										%>
 									</div>
 									<%
-										}
+												}
+											}
 										}
 									%>
+									</div>
 									<div class="row"></div>
 									<div class="row"></div>
 									<div class="row">
@@ -162,7 +174,7 @@
 											<a class="btn btn-primary center" href="writeContent.do">컨텐츠
 												등록하기</a>
 										</div>
-									</div><img src="${pageContext.request.contextPath}/resources/image/test123.jpg" width="50" height="200" />
+									</div>
 								</div>
 							</div>
 						</div>

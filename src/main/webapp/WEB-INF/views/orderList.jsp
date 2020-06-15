@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.webproject.app.Login.*"%>
+<%@ page import="com.webproject.app.Pay.*"%>
+<%@ page import="com.webproject.app.Board.*"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 
@@ -24,9 +27,26 @@
 	<%
 		UserDAO userDAO = new UserDAO();
 		String userID = (String) session.getAttribute("userID");
+		User user = userDAO.returnUser(userID);
+		BoardDAO boardDAO = new BoardDAO();
+		
+		PayDAO payDAO = new PayDAO();
+		
+		
+		
+		int currentPage = Integer.parseInt(request.getParameter("pg"));
+
+		if (currentPage < 1)
+			currentPage = 1;
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
-	<div class="mt-3">
+	<header class="Nav">
+		<nav id="NavBar"></nav>
+	</header>
+	<div class="py-1">
+		<div class="container"></div>
+	</div>
+	<div class="p-0">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -35,10 +55,7 @@
 							<div class="row">
 								<div class="col-md-3" style="">
 									<ul class="list-group list-group-flush">
-										<a href="#" class="list-group-item list-group-item-action"
-											id="accordion1" data-toggle="collapse"
-											data-target="#collapse1" aria-controls="collapse1"
-											aria-expanded="false">
+										<div class="list-group-item list-group-item-action">
 											<div class="row">
 												<div class="col-md-12 pb-3">
 													<img class="img-fluid d-block rounded-circle"
@@ -49,7 +66,7 @@
 											<div class="row">
 												<div class="col-md-12 justify-content-center">
 													<h3 class="justify-content-center d-flex mt-2 mb-0 pb-2">
-														<b>test</b>
+														<b><%=user.getUserName()%></b>
 													</h3>
 													<div class="row">
 														<div
@@ -58,6 +75,7 @@
 																data-toggle="buttons">
 
 																<%
+																	boolean isExpert = false;
 																	if (userDAO.isExpert(userID) == 0) {
 																%>
 																<label class="btn btn-primary active"> <input
@@ -66,10 +84,8 @@
 																</label>
 
 																<%
-																	} else if (userDAO.isExpert(userID) == 1)
-																		;
-																	boolean isExpert = true;
-																	{
+																	} else if (userDAO.isExpert(userID) == 1) {
+																		isExpert = true;
 																%>
 																<label class="btn btn-primary"> <input
 																	type="radio" name="options" id="option2"
@@ -84,17 +100,22 @@
 													</div>
 												</div>
 											</div>
-										</a>
-										<a href="orderList.do"
+										</div>
+										<a href="orderList.do?pg=1"
 											class="list-group-item list-group-item-action">구매내역</a>
 										<%
 											if (isExpert == true) {
 										%>
-										<a href="soldList.do"
+										<a href="soldList.do?pg=1"
 											class="list-group-item list-group-item-action">판매내역</a>
+										<a href="reviseExpert.do"
+											class="list-group-item list-group-item-action">전문가 정보 수정</a>
 										<%
 											}
 										%>
+										<a href="withdrawUser.do"
+											class="list-group-item list-group-item-action">회원 탈퇴</a>
+
 									</ul>
 								</div>
 								<div class="col-md-8" style="">
@@ -118,44 +139,46 @@
 																		<th>문의</th>
 																	</tr>
 																</thead>
+
+																<%
+																ArrayList<Pay> list = payDAO.returnPay(userID);
+																
+																
+
+																	int a;
+																	if (list.size() < 3)
+																		a = list.size();
+																	else
+																		a = 3;
+
+																	if (list.size() >= 1) {
+
+																		for (int col = 0; col < a; col++) {
+																			Board board = boardDAO.returnBoard(list.get(col+3*(currentPage-1)).getBoardNum());
+																			
+																%>
+
+
+
 																<tbody>
 																	<tr>
 																		<td rowspan="3" style="vertical-align: middle">#1</td>
-																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
+																		<td colspan="2"><a href="#"><%= board.getSubject()  %></a></td>
 																		<td><a class="btn btn-primary" href="#">문의</a></td>
 																	</tr>
 																	<tr>
-																		<td>06/07~06/09</td>
-																		<td>9000원</td>
+																		<td><%= board.getStartDate() %> ~ <%=board.getEndDate() %></td>
+																		<td><%= board.getPrice() %></td>
 																		<td><a class="btn btn-primary" id="modal"
 																			data-toggle="modal" data-target="#myModal">리뷰</a></td>
 																	</tr>
 																</tbody>
-																<tbody>
-																	<tr>
-																		<td rowspan="3" style="vertical-align: middle">#1</td>
-																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
-																		<td><a class="btn btn-primary" href="#">문의</a></td>
-																	</tr>
-																	<tr>
-																		<td>06/07~06/09</td>
-																		<td>9000원</td>
-																		<td><a class="btn btn-primary" id="modal"
-																			data-toggle="modal" data-target="#myModal">리뷰</a></td>
-																	</tr>
-																</tbody>
-																<tbody>
-																	<tr>
-																		<td rowspan="3" style="vertical-align: middle">#1</td>
-																		<td colspan="2"><a href="#">3일 완성 포토샵</a></td>
-																		<td><a class="btn btn-info" href="#">문의</a></td>
-																	</tr>
-																	<tr>
-																		<td>06/07~06/09</td>
-																		<td>9000원</td>
-																		<td><a class="btn btn-info" href="#">리뷰</a></td>
-																	</tr>
-																</tbody>
+
+
+																<%
+																	}
+																	}
+																%>
 															</table>
 														</li>
 													</ul>
@@ -164,18 +187,18 @@
 													<div
 														class="col-md-12 justify-content-center d-flex mt-2 pt-2">
 														<ul class="pagination">
-															<li class="page-item"><a class="page-link" href="#">Prev</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">1</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">2</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">3</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">4</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">Next</a>
-															</li>
+															<li class="page-item"><a class="page-link"
+																href="orderList.do?pg=<%=currentPage - 1%>">Prev</a></li>
+															<li class="page-item"><a class="page-link"
+																href="orderList.do?pg=1">1</a></li>
+															<li class="page-item"><a class="page-link"
+																href="orderList.do?pg=2">2</a></li>
+															<li class="page-item"><a class="page-link"
+																href="orderList.do?pg=3">3</a></li>
+															<li class="page-item"><a class="page-link"
+																href="orderList.do?pg=4">4</a></li>
+															<li class="page-item"><a class="page-link"
+																href="orderList.do?pg=<%=currentPage + 1%>">Next</a></li>
 														</ul>
 
 													</div>

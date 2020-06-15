@@ -111,7 +111,7 @@
 															<div class="col-md-12 d-flex justify-content-center">
 																<div class="card">
 																	<img class="card-img"
-																		src="test123.jpg"
+																		src="${pageContext.request.contextPath}/resources/image/<%= board.getFileName()%>"
 																		alt="Card image">
 																</div>
 															</div>

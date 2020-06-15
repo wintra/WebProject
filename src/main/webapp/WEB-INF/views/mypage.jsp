@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.sql.DriverManager"%>
-<%@ page import="java.sql.Connection"%>
-<%@ page import="java.sql.Statement"%>
-<%@ page import="java.sql.ResultSet"%>
-<%@ page import="java.sql.SQLException"%>
 <%@ page import="com.webproject.app.Login.*"%>
 
 <!DOCTYPE html>
@@ -49,12 +44,10 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
-		String userName = (String) session.getAttribute("userName");
-		String userEmail = (String) session.getAttribute("userEmail");
-		int userPhoneNum = (Integer) session.getAttribute("userPhoneNum");
-		String userGender = (String) session.getAttribute("userGender");
 		
 		UserDAO userDAO = new UserDAO();
+		
+		User user = userDAO.returnUser(userID);
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -84,7 +77,7 @@
 											<div class="row">
 												<div class="col-md-12 justify-content-center">
 													<h3 class="justify-content-center d-flex mt-2 mb-0 pb-2">
-														<b><%=userName%></b>
+														<b><%= user.getUserName()%></b>
 													</h3>
 													<div class="row">
 														<div
@@ -113,10 +106,12 @@
 												</div>
 											</div>
 										</div>
-										<a href="orderList.do" class="list-group-item list-group-item-action">구매내역</a>
+										<a href="orderList.do?pg=1" class="list-group-item list-group-item-action">구매내역</a>
 										<% if(isExpert == true){ %>
-										<a href="soldList.do" class="list-group-item list-group-item-action">판매내역</a>
+										<a href="soldList.do?pg=1" class="list-group-item list-group-item-action">판매내역</a>
+										<a href="reviseExpert.do" class="list-group-item list-group-item-action">전문가 정보 수정</a>
 										<% } %>
+										<a href="withdrawUser.do" class="list-group-item list-group-item-action">회원 탈퇴</a>
 										
 									</ul>
 								</div>
@@ -136,24 +131,24 @@
 															<tbody>
 																<tr>
 																	<td class="table-primary">아이디</td>
-																	<td><%=userID%></td>
+																	<td><%= userID %></td>
 																</tr>
 																<tr></tr>
 																<tr>
 																	<td class="table-primary"><b>이름</b></td>
-																	<td><%=userName%></td>
+																	<td><%= user.getUserName() %></td>
 																</tr>
 																<tr>
 																	<td class="table-primary"><b>성별</b></td>
-																	<td><%=userGender%></td>
+																	<td><%= user.getUserGender()%></td>
 																</tr>
 																<tr>
 																	<td class="table-primary"><b>이메일</b></td>
-																	<td><%=userEmail%></td>
+																	<td><%= user.getUserEmail()%></td>
 																</tr>
 																<tr>
 																	<td class="table-primary"><b>전화번호</b></td>
-																	<td><%=userPhoneNum%></td>
+																	<td><%= user.getUserPhoneNum() %></td>
 																</tr>
 															</tbody>
 														</table>
