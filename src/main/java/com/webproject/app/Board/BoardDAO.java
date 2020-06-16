@@ -290,4 +290,32 @@ public class BoardDAO {
 
 		return top3;
 	}
+	
+	public int calculateScore(int score, int boardNum) {
+		String SQL="UPDATE board set score = ? where boardNum = " + boardNum + ";";
+		String SQL1 ="select avg(commentscore) from comment where boardNum = " + boardNum + ";";
+		double avgscore = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(SQL1);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				avgscore = rs.getInt(1);
+
+			}
+			System.out.println(avgscore);
+			pstmt.clearParameters();
+			
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setDouble(1, avgscore);
+
+			return pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // db오류
+	}
+	
 }

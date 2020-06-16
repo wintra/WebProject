@@ -29,16 +29,26 @@
 		String userID = (String) session.getAttribute("userID");
 		User user = userDAO.returnUser(userID);
 		BoardDAO boardDAO = new BoardDAO();
-		
+
 		PayDAO payDAO = new PayDAO();
-		
-		
-		
+
 		int currentPage = Integer.parseInt(request.getParameter("pg"));
 
 		if (currentPage < 1)
 			currentPage = 1;
 	%>
+
+	<script language="javascript">
+		//부모 창에서 모달창을 띄운다.
+		var array = new Array();
+		array["element"] = document.getElementById("element");
+		array["string"] = "문자열";
+		array["int"] = 1;
+		var modal = window
+				.showModalDialog("modal.htm", array,
+						"dialogWidth:500px; dialogHeight:500px; dialogTop:0px; dialogLeft:0px;");
+	</script>
+
 	<jsp:include page="header.jsp"></jsp:include>
 	<header class="Nav">
 		<nav id="NavBar"></nav>
@@ -141,21 +151,18 @@
 																</thead>
 
 																<%
-																ArrayList<Pay> list = payDAO.returnPay(userID);
-																
-																
+																	ArrayList<Pay> list = payDAO.returnPay(userID);
 
 																	int a;
 																	if (list.size() - 3 * currentPage < 0)
-																		a = list.size() - 9 * ( currentPage-1 );
+																		a = list.size() - 3 * (currentPage - 1);
 																	else
 																		a = 3;
 
 																	if (list.size() >= 1) {
 
 																		for (int col = 0; col < a; col++) {
-																			Board board = boardDAO.returnBoard(list.get(col+3*(currentPage-1)).getBoardNum());
-																			
+																			Board board = boardDAO.returnBoard(list.get(col + 3 * (currentPage - 1)).getBoardNum());
 																%>
 
 
@@ -163,13 +170,13 @@
 																<tbody>
 																	<tr>
 																		<td rowspan="3" style="vertical-align: middle">#1</td>
-																		<td colspan="2"><a href="#"><%= board.getSubject()  %></a></td>
+																		<td colspan="2"><a href="#"><%=board.getSubject()%></a></td>
 																		<td><a class="btn btn-primary" href="#">문의</a></td>
 																	</tr>
 																	<tr>
-																		<td><%= board.getStartDate() %> ~ <%=board.getEndDate() %></td>
-																		<td><%= board.getPrice() %></td>
-																		<td><a class="btn btn-primary" id="modal" 
+																		<td><%=board.getStartDate()%> ~ <%=board.getEndDate()%></td>
+																		<td><%=board.getPrice()%></td>
+																		<td><a class="btn btn-primary" id="modal"
 																			data-toggle="modal" data-target="#myModal">리뷰</a></td>
 																	</tr>
 																</tbody>
@@ -223,8 +230,6 @@
 	</div>
 
 	<!-- 팝업으로 띄워질 리뷰작성 폼 -->
-
-	<jsp:include page="footer.jsp"></jsp:include>
 	<div class="modal" id="mymodal" data-backdrop="static">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -241,7 +246,7 @@
 								<tr>
 									<th>구매내용</th>
 									<td>
-										<p><%= currentPage %></p>
+										<p><%=%></p>
 									</td>
 								</tr>
 								<tr>
@@ -273,11 +278,13 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary" >확인</button>
+					<button type="button" class="btn btn-primary">확인</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
