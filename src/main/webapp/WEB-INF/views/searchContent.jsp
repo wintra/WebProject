@@ -16,11 +16,10 @@
 	<%
 		BoardDAO boardDAO = new BoardDAO();
 	UserDAO userDAO = new UserDAO();
-	int categoryNum = Integer.parseInt(request.getParameter("categoryNum"));
+	String search = request.getParameter("search");
 	int currentPage = Integer.parseInt(request.getParameter("pg"));
 	if (currentPage < 1)
 		currentPage = 1;
-	String category[] = boardDAO.returnCategory(categoryNum);
 	%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<header class="Nav">
@@ -38,20 +37,22 @@
 							<div class="row">
 								<div class="col-md-3">
 									<jsp:include page="side.jsp"></jsp:include>
+									<%
+										ArrayList<Board> list = boardDAO.getBoardList(search);
+									%>
 								</div>
 								<div class="col-md-9">
 									<div class="row">
 										<div class="col-md-12">
-											<h5 class=""><%=category[0]%>
-												&gt;
-												<%=category[1]%></h5>
+											<h5 class="">
+												'<%=search%>'에 대한 검색 결과
+												<%=list.size()%>개
+											</h5>
 										</div>
 									</div>
 									<div>
 										<%
-											ArrayList<Board> list = boardDAO.boardListSummary(categoryNum);
-
-										int a;
+											int a;
 										if (list.size() - 9 * currentPage < 0)
 											a = list.size() - 9 * (currentPage - 1);
 										else
@@ -100,37 +101,20 @@
 												class="col-md-12 justify-content-center d-flex mt-4 pt-3">
 												<ul class="pagination">
 													<li class="page-item"><a class="page-link"
-														href="mainContent.do?categoryNum=<%=categoryNum%>&pg=<%=currentPage - 1%>">Prev</a>
+														href="mainContent.do?search=<%=search%>&pg=<%=currentPage - 1%>">Prev</a>
 													</li>
 													<li class="page-item"><a class="page-link"
-														href="mainContent.do?categoryNum=<%=categoryNum%>&pg=1">1</a>
-													</li>
+														href="mainContent.do?search=<%=search%>&pg=1">1</a></li>
 													<li class="page-item"><a class="page-link"
-														href="mainContent.do?categoryNum=<%=categoryNum%>&pg=2">2</a>
-													</li>
+														href="mainContent.do?search=<%=search%>&pg=2">2</a></li>
 													<li class="page-item"><a class="page-link"
-														href="mainContent.do?categoryNum=<%=categoryNum%>&pg=3">3</a>
-													</li>
+														href="mainContent.do?search=<%=search%>&pg=3">3</a></li>
 													<li class="page-item"><a class="page-link"
-														href="mainContent.do?categoryNum=<%=categoryNum%>&pg=4">4</a>
-													</li>
+														href="mainContent.do?search=<%=search%>&pg=4">4</a></li>
 													<li class="page-item"><a class="page-link"
-														href="mainContent.do?categoryNum=<%=categoryNum%>&pg=<%=currentPage + 1%>">Next</a>
+														href="mainContent.do?search=<%=search%>&pg=<%=currentPage + 1%>">Next</a>
 													</li>
 												</ul>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div
-												class="col-md-12 justify-content-center d-flex mt-4 pt-3">
-												<%
-													if (userDAO.isExpert((String) session.getAttribute("userID")) == 1) {
-												%>
-												<a class="btn btn-primary center" href="writeContent.do">컨텐츠
-													등록하기</a>
-												<%
-													}
-												%>
 											</div>
 										</div>
 									</div>
@@ -142,6 +126,7 @@
 			</div>
 		</div>
 	</div>
+
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 

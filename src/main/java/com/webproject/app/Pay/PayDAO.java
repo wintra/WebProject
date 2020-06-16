@@ -6,11 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import com.webproject.app.Board.Board;
 
 public class PayDAO {
-	
-	
+
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
@@ -30,10 +31,9 @@ public class PayDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public ArrayList<Pay> returnPay(String userID){
-		String SQL = "SELECT * FROM pay WHERE buyerid =" + userID + ";";
+
+	public ArrayList<Pay> returnPay(String userID) {
+		String SQL = "SELECT * FROM pay WHERE buyerid =\"" + userID + "\";";
 		ArrayList<Pay> list = new ArrayList<Pay>();
 
 		try {
@@ -50,7 +50,6 @@ public class PayDAO {
 				pay.setPrice(rs.getInt("price"));
 				pay.setBuyerid(rs.getString("buyerid"));
 
-
 				list.add(pay);
 
 			}
@@ -63,6 +62,49 @@ public class PayDAO {
 
 		return list;
 	}
-	
-	
+
+	public int insertpay(Pay pay) {
+		String SQL = "insert into pay(boardNum,id,price,buyerid) values(?,?,?,?)";
+		System.out.println(pay.getBoardNum());
+		System.out.println(pay.getId());
+
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, pay.getBoardNum()); // boardNum
+			pstmt.setString(2, pay.getId()); // sellerid
+			pstmt.setInt(3, pay.getPrice()); // price
+			pstmt.setString(4, pay.getBuyerid()); // buyerid
+
+			return pstmt.executeUpdate();
+
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return -1; // 데이터 베이스 오류
+	}
+
+	public int countPay(int boardNum) {
+		String SQL = "SELECT COUNT(*) FROM pay WHERE boardNum = " + boardNum + ";";
+		int count = 0;
+		try {
+			
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				count = rs.getInt(1);
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
+		return count;
+
+	}
 }

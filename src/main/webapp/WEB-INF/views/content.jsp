@@ -3,60 +3,20 @@
 <%@ page import="com.webproject.app.Board.*"%>
 <%@ page import="com.webproject.app.Login.*"%>
 <%@ page import="java.util.ArrayList"%>
-
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
-<style>
-.centered {
-	width: 1000px;
-	position: absolute;
-	left: 50%;
-	margin-left: -200px;
-}
 
-.p-0 {
-	margin-top: 150px;
-}
+</head>
+<!DOCTYPE html>
+<html>
 
-.mt-5 {
-	background: #ffffff;
-	position: fixed;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 1030;
-	margin: 0 !important;
-}
-
-.context {
-	margin-top: 130px;
-}
-</style>
-
-<style>
-.box1 {
-	height: 40;
-	text-align: center;
-	position: relative
-}
-
-.box2 {
-	height: 40;
-	position: absolute;
-}
-</style>
-<link href="nav.css" rel="stylesheet" type="text/css">
-
-
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
@@ -80,7 +40,7 @@
 	%>
 	<script>
 		function popup_post_set() {
-			var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+			var option = "width = 400, height = 600, top = 100, left = 300, location = no"
 			window.open('', 'new_popup', option);
 			document.f1.submit();
 		}
@@ -167,7 +127,7 @@
 																						</thead>
 																						<tbody>
 																							<%
-																								ArrayList<Comment> list = boardDAO.returnCommentyBoardNum(boardNum);
+																								ArrayList<Comment> list = boardDAO.returnCommentByBoardNum(boardNum);
 																								if (list.size() >= 1) {
 
 																									for (int col = 0; col < list.size(); col++) {
@@ -229,6 +189,7 @@
 																					<tr>
 																						<td class="border-right border-primary">평점</td>
 																						<td class="border-primary"><%=board.getScore()%>/5</td>
+																						<% System.out.println(board.getScore()); %>
 																					</tr>
 																				</tbody>
 																			</table>

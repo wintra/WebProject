@@ -1,6 +1,8 @@
 package com.webproject.app.Servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,12 +28,14 @@ public class UserLogout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		
+		PrintWriter out = response.getWriter();
 		
 		session.invalidate();
-		
-		
-		response.sendRedirect("home.do");
+		out.println("<script>");
+		out.println("alert('로그아웃 되었습니다')");
+		out.println("</script>");
+		response.addHeader("REFRESH"," 0; URL=home.do");
+
 	}
 
 	/**

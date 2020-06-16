@@ -8,38 +8,9 @@
 <head>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
-  
-   <style>
-    .centered {
-      width: 1000px;
-      position: absolute;
-      left: 50%;
-      margin-left: -200px;
-    }
-    
-    .p-0 {
-    margin-top: 150px;
-    
-}
-.mt-5{
-   background: #ffffff;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-    margin: 0 !important;
 
-}
-.expert-info{
- margin-top: 160px;
-}
-    
-  </style>
-  <link href="nav.css" rel="stylesheet" type="text/css">
 </head>
+
 
 <body>
  <%
@@ -49,14 +20,20 @@
       }
    %>
    <jsp:include page="header.jsp"></jsp:include>
-   
+ <header class="Nav">
+		<nav id="NavBar"></nav>
+	</header>
+	<div class="py-1">
+		<div class="container"></div>
+	</div>
   <div class="expert-info" style="">
     <div class="container">
       <div class="row">
+    
         <div class="col-md-12 order-md-1">
           <form class="needs-validation" action="talentRegisterAction"  method = "post">
             <div class="row">
-              <div class="col-md-12 mb-3"> <label for="firstName" class="text-body" contenteditable="true">전문가 닉네임<br></label>
+              <div class="col-md-12 mb-3"> <label for="firstName" class="text-body">전문가 닉네임<br></label>
                 <input type="text" class="form-control w-75 px-3" name="nickName" placeholder="닉네임을 입력해주세요." value="" style="">
                 <div class="invalid-feedback"> Valid first name is required. </div>
               </div>
@@ -70,6 +47,7 @@
               <option value="document">문서</option>
               <option value="lesson">레슨/실무</option>
             </select>
+            
             <div class="mb-3"> <label for="profield">보유기술</label>
               <input type="text" class="form-control w-75" name="profield" placeholder="보유하신 기술을 입력해주세요." required="">
               <div class="invalid-feedback" style=""> Please enter your shipping address. </div>

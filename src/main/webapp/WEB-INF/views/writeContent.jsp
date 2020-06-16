@@ -1,57 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
-	<%@ page import="com.webproject.app.Login.*" %>
+<%@ page import="com.webproject.app.Login.*" %>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
-<style>
-.box1 {
-	height: 40;
-	text-align: center;
-	position: relative
-}
 
-.box2 {
-	height: 40;
-	position: absolute;
-}
-
-.p-0 {
-	margin-top: 150px;
-}
-
-.mt-5 {
-	background: #ffffff;
-	position: fixed;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 1030;
-	margin: 0 !important;
-}
-</style>
-
-<style>
-.centered {
-	width: 1000px;
-	position: absolute;
-	left: 50%;
-	margin-left: -200px;
-}
-</style>
-<style>
-input:focus, textarea:focus {
-	outline: none;
-}
-</style>
 
 </head>
 

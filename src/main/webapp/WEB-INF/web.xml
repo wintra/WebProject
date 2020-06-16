@@ -166,5 +166,37 @@
 		<servlet-name>CalculateScore</servlet-name>
 		<url-pattern>/calculateScoreAction</url-pattern>
 	</servlet-mapping>
-
+	<servlet>
+		<description></description>
+		<display-name>paymentRegister</display-name>
+		<servlet-name>paymentRegister</servlet-name>
+		<servlet-class>com.webproject.app.Servlet.paymentRegister
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>paymentRegister</servlet-name>
+		<url-pattern>/paymentRegisterAction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ContentSearch</display-name>
+		<servlet-name>ContentSearch</servlet-name>
+		<servlet-class>com.webproject.app.Servlet.ContentSearch
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ContentSearch</servlet-name>
+		<url-pattern>/searchContentAction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>CommentUpdate</display-name>
+		<servlet-name>CommentUpdate</servlet-name>
+		<servlet-class>com.webproject.app.Servlet.CommentUpdate
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CommentUpdate</servlet-name>
+		<url-pattern>/setComment</url-pattern>
+	</servlet-mapping>
 </web-app>

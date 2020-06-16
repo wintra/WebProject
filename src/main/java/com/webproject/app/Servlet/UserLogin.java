@@ -50,7 +50,7 @@ public class UserLogin extends HttpServlet {
 			session.setAttribute("userID", userID);
 			out.println("<script>");
 			out.println("</script>");
-			response.sendRedirect("setSession");			
+			response.sendRedirect("home.do");			
 		}else if(result == 0){
 			out.println("<script>");
 			out.println("alert('비밀번호가 틀립니다.');");

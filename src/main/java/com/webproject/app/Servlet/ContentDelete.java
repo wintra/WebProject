@@ -28,6 +28,20 @@ public class ContentDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		BoardDAO boardDAO = new BoardDAO();
+		int boardNum;
+		System.out.println(request.getParameter("boardNum"));
+		boardNum = Integer.parseInt(request.getParameter("boardNum"));
+		
+		System.out.println(boardNum);
+		int result = boardDAO.deleteContent(boardNum);
+		System.out.println(result);
+		out.println("<script>");
+		out.println("alert('게시글이 삭제되었습니다')");
+		out.println("</script>");
+		response.addHeader("REFRESH"," 0; URL=soldList.do?pg=1");
 
 	}
 
@@ -35,16 +49,6 @@ public class ContentDelete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		BoardDAO boardDAO = new BoardDAO();
-		int boardNum = Integer.parseInt(request.getParameter("boardNum"));
-		boardDAO.deleteContent(boardNum);
-		
-		out.println("<script>");
-		out.println("alert('게시글이 삭제되었습니다')");
-		out.println("</script>");
-		response.addHeader("REFRESH"," 0; URL=soldList.do?pg=1");
 		
 		
 		doGet(request, response);

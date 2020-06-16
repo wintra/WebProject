@@ -107,16 +107,17 @@ public class BoardDAO {
 
 	public int deleteContent(int boardNum) {
 		String SQL = "delete from board where boardNum=?";
-		String path = "D:\\eclipse\\WebProject\\src\\main\\webapp\\resources\\image\\";
+		String path = "D:\\eclipse\\WebProject\\src\\main\\webapp\\resources\\image"; // 절대경로 (
+																												// 기본경로가
+																												// 없음 /
+																												// 찾아봐야됨)
 		Board board = returnBoard(boardNum);
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, boardNum);
 
 			pstmt.executeUpdate();
-			
-			
-			
+
 			File file = new File(path + board.getFileName());
 
 			if (file.exists()) {
@@ -128,7 +129,7 @@ public class BoardDAO {
 			} else {
 				System.out.println("파일이 존재하지 않습니다.");
 			}
-			
+
 			return 1;
 
 		} catch (Exception e) {
@@ -139,8 +140,8 @@ public class BoardDAO {
 
 	public Board returnBoard(int boardNum) {
 		Board board = new Board();
-		
-		String SQL = "select id, categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople, fileName from board where boardNum ="
+
+		String SQL = "select id, categoryNum ,tabone , tabtwo, tabthree, tabfour, subject, price, startDate, endDate, progress, maxPeople, score, fileName from board where boardNum ="
 				+ boardNum + ";";
 
 		try {
@@ -159,6 +160,7 @@ public class BoardDAO {
 				board.setEndDate(rs.getString("endDate"));
 				board.setProgress(rs.getString("progress"));
 				board.setMaxPeople(rs.getInt("maxPeople"));
+				board.setScore(rs.getFloat("score"));
 				board.setFileName(rs.getString("fileName"));
 
 			}
@@ -169,11 +171,10 @@ public class BoardDAO {
 
 		return board;
 	}
-	
+
 	public ArrayList<Board> returnBoardbyID(String userID) {
 		ArrayList<Board> list = new ArrayList<Board>();
-		String SQL = "select boardNum, subject, startDate, endDate, maxPeople from board where id =\""
-				+ userID + "\";";
+		String SQL = "select boardNum, subject, startDate, endDate, maxPeople from board where id =\"" + userID + "\";";
 
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -185,7 +186,7 @@ public class BoardDAO {
 				board.setStartDate(rs.getString("startDate"));
 				board.setEndDate(rs.getString("endDate"));
 				board.setMaxPeople(rs.getInt("maxPeople"));
-				
+
 				list.add(board);
 			}
 
@@ -195,11 +196,10 @@ public class BoardDAO {
 
 		return list;
 	}
-	
-	public ArrayList<Comment> returnCommentyBoardNum(int boardNum) {
+
+	public ArrayList<Comment> returnCommentByBoardNum(int boardNum) {
 		ArrayList<Comment> list = new ArrayList<Comment>();
-		String SQL = "select buyerid, comment, commentScore from comment where boardNum="
-				+ boardNum + ";";
+		String SQL = "select buyerid, comment, commentScore from comment where boardNum=" + boardNum + ";";
 
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -209,7 +209,7 @@ public class BoardDAO {
 				comment.setBuyerid(rs.getString("buyerid"));
 				comment.setComment(rs.getString("comment"));
 				comment.setCommentScore(rs.getInt("commentScore"));
-				
+
 				list.add(comment);
 			}
 
@@ -290,32 +290,62 @@ public class BoardDAO {
 
 		return top3;
 	}
-	
+
 	public int calculateScore(int score, int boardNum) {
-		String SQL="UPDATE board set score = ? where boardNum = " + boardNum + ";";
-		String SQL1 ="select avg(commentscore) from comment where boardNum = " + boardNum + ";";
+		String SQL = "UPDATE board set score = ? where boardNum = " + boardNum + ";";
+		String SQL1 = "select avg(commentscore) from comment where boardNum = " + boardNum + ";";
 		double avgscore = 0;
-		
+
 		try {
 			pstmt = conn.prepareStatement(SQL1);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				avgscore = rs.getInt(1);
+				avgscore = rs.getDouble(1);
 
 			}
-			System.out.println(avgscore);
-			pstmt.clearParameters();
 			
+			pstmt.clearParameters();
+
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setDouble(1, avgscore);
 
 			return pstmt.executeUpdate();
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return -1; // db오류
 	}
+
+	public ArrayList<Board> getBoardList(String Subject) // 글 목록
+	{
+		ArrayList<Board> list = new ArrayList<Board>();
+
+		String SQL = "SELECT boardNum, subject, fileName from board where subject= \"" + Subject + "\"";
+
+		try {
+			
+			pstmt = conn.prepareStatement(SQL);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Board board = new Board();
+				board.setBoardNum(rs.getInt("boardNum"));
+				board.setSubject(rs.getString("subject"));
+				board.setFileName(rs.getString("fileName"));
+
+				list.add(board);
+			}
+
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+		
+		return list;
+	} // end getBoardList
+	
+	
 	
 }
+
+

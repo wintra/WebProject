@@ -22,7 +22,7 @@ import com.webproject.app.Board.*;
 @Controller
 public class SampleController {
 	private static final Logger logger = LoggerFactory.getLogger(SampleController.class);
-
+	String path = "D:\\eclipse\\WebProject\\src\\main\\webapp\\resources\\image\\"; // 절대경로 ( 기본경로가 없음 / 찾아봐야됨)
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "home";
@@ -123,7 +123,7 @@ public class SampleController {
 		MultipartFile mf = mtfRequest.getFile("uploadfile");
 		String extension = FilenameUtils.getExtension(mf.getOriginalFilename());
 
-		String path = "D:\\eclipse\\WebProject\\src\\main\\webapp\\resources\\image\\"; // 절대경로 ( 기본경로가 없음 / 찾아봐야됨)
+		
 		
 		int boardNum = boardDAO.writeContent(userID, board); // 파일 이름 바꿔서 서버에 저장
 		int result = boardDAO.setFileName(boardNum, extension);
@@ -168,13 +168,12 @@ public class SampleController {
 		
 		MultipartFile mf = mtfRequest.getFile("uploadfile");
 		
-		String path = "D:\\eclipse\\WebProject\\src\\main\\webapp\\resources\\image\\"; 
 		String reviseFileName = mf.getOriginalFilename(); // 새로 들어온 파일 명
 		
 		
 		File gifFile = new File(path+boardNum +".gif");
 		File pngFile = new File(path+boardNum +".png");
-		File jpgFile = new File(path+boardNum +"jpg.");
+		File jpgFile = new File(path+boardNum +".jpg");
 		
 		if (gifFile.exists() || pngFile.exists() || jpgFile.exists()) {
 			if (gifFile.delete() | pngFile.delete() | jpgFile.delete()) {
@@ -211,6 +210,21 @@ public class SampleController {
 	@RequestMapping(value = "review.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String review(Locale locale, Model model) {
 		return "review";
+	}
+	
+	@RequestMapping(value = "kakaopay.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String kakaopay(Locale locale, Model model) {
+		return "kakaopay";
+	}
+	
+	@RequestMapping(value = "searchContent.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String searchContent(Locale locale, Model model) {
+		return "searchContent";
+	}
+	
+	@RequestMapping(value = "modal.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modal(Locale locale, Model model) {
+		return "modal";
 	}
 
 

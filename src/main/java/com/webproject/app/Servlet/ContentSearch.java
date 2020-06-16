@@ -2,22 +2,22 @@ package com.webproject.app.Servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.webproject.app.Login.*;
 /**
- * Servlet implementation class UserWithdrawal
+ * Servlet implementation class SearchContent
  */
-public class UserWithdrawal extends HttpServlet {
+@WebServlet("/SearchContent")
+public class ContentSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserWithdrawal() {
+    public ContentSearch() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +26,8 @@ public class UserWithdrawal extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-		
-		String userID =(String)session.getAttribute("userID");
-		
-		UserDAO userDAO = new UserDAO();
-		
-		userDAO.withdrawal(userID);
-		session.invalidate();
-		response.sendRedirect("home.do");
+		String search=request.getParameter("search");
+		response.sendRedirect("searchContent.do?search="+search+"&pg=1");
 	}
 
 	/**
