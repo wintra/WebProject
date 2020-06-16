@@ -28,6 +28,8 @@ public class UserWithdrawal extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		
+		
+		
 		String userID =(String)session.getAttribute("userID");
 		
 		UserDAO userDAO = new UserDAO();
